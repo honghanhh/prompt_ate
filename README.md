@@ -27,8 +27,10 @@ The experiments were conducted on ACTER datasets:
 
 ### 4.1. Models
 
+Add your API key to ```prompts/prompt_classifier.py``` and run the following command.
+
 ```python
-cd prompts
+cd prompts/
 python prompt_classifier.py [--data_path] [--lang] [--ver] [--formats] [--output_path]
 ```
 
@@ -40,11 +42,19 @@ where:
 - `--formats` is the prompting designed format;
 - `--output_path` is the path to the output csv file.
 
+Run the following command to run all the models:
+
+```python
+cd prompts/
+chmod +x run_prompt.sh
+./run_prompt.sh
+```
+
 ### 4.2 Evaluation
 
 ```python
-cd prompts
-python evaluate.py [--data_path] [--lang] [--ver][--output_path]
+cd prompts/
+python evaluate.py [--data_path] [--lang] [--ver]
 ```
 
 where:
@@ -53,13 +63,22 @@ where:
 - `--lang` is the language of the corpus;
 - `--ver` is the version of corpus (ANN or NES).
 
+Run the following command to run all the evaluation:
+
+```python
+cd prompts/
+chmod +x run_eval.sh
+./run_eval.sh
+```
+
 ## 5. Results
 
 (updating)
 
-## References
+<!-- ## References
 
-Tran, Hanh Thi Hong, et al. "[Can Cross-Domain Term Extraction Benefit from Cross-lingual Transfer?](https://link.springer.com/chapter/10.1007/978-3-031-18840-4_26)." Discovery Science: 25th International Conference, DS 2022, Montpellier, France, October 10–12, 2022, Proceedings. Cham: Springer Nature Switzerland, 2022.
+Tran, Hanh Thi Hong, et al. "[Can Cross-Domain Term Extraction Benefit from Cross-lingual Transfer?](https://link.springer.com/chapter/10.1007/978-3-031-18840-4_26)." Discovery Science: 25th International Conference, DS 2022, Montpellier, France, October 10–12, 2022, Proceedings. Cham: Springer Nature Switzerland, 2022. -->
 
 ## Contributors:
+
 - 🐮 [TRAN Thi Hong Hanh](https://github.com/honghanhh) 🐮

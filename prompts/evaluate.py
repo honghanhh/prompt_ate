@@ -24,10 +24,10 @@ def extract_between_markers(input_string):
 
 def read_data(lang, ver):
     if ver == 'ann':
-        df = pd.read_csv('./ACTER/'+ lang + '/htfl/annotated/annotations/unique_annotation_lists/htfl_'+ lang + '_terms.tsv',
+        df = pd.read_csv('../ACTER/'+ lang + '/htfl/annotated/annotations/unique_annotation_lists/htfl_'+ lang + '_terms.tsv',
                           header=None, delimiter='\t')[0].tolist()
     elif ver == 'nes':
-        df = pd.read_csv('./ACTER/'+ lang + '/htfl/annotated/annotations/unique_annotation_lists/htfl_'+ lang + '_terms_nes.tsv',
+        df = pd.read_csv('../ACTER/'+ lang + '/htfl/annotated/annotations/unique_annotation_lists/htfl_'+ lang + '_terms_nes.tsv',
                           header=None, delimiter='\t')[0].tolist()
     else:
         raise Exception("Version not supported")
@@ -71,6 +71,7 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     df = pd.read_csv(args.data_path)
+    # print(df.head(2))
     gold_list = read_data(args.lang, args.ver)
 
     if args.lang == 'en':
@@ -78,6 +79,7 @@ if __name__ == '__main__':
             print("English ANN evaluation")
 
             ##########################################
+            print("#"*50)
             print("#1. Extracted IOB format")
             en_ann_output1 = []
             for x, y in list(zip(df.words, df.en_ann_output1)):
@@ -87,7 +89,8 @@ if __name__ == '__main__':
                     labels = 'O '*len(words)
                 labels =  filter_text(labels).split(' ')
                 en_ann_output1.append(labels)
-
+            df['en_ann_output1_processed'] = en_ann_output1
+        
             en_ann_output1_processed = []
             for x, y in zip(df.words, df.en_ann_output1_processed):
                 terms =  extract_entities(eval(x), y)
@@ -99,6 +102,7 @@ if __name__ == '__main__':
             print("F-score: " + str(fscore))
 
             ##########################################
+            print("#"*50)
             print("#2. Extracted candidate term list")
             en_ann_output2 = []
             for x in df['en_ann_output2']:
@@ -113,6 +117,7 @@ if __name__ == '__main__':
             print("F-score: " + str(fscore))
 
             ##########################################
+            print("#"*50)
             print("#3. Masking terms")
             df['en_ann_output3_processed'] = [extract_between_markers(x) for x in df['en_ann_output3']]
             en_ann_output3_processed = []
@@ -128,6 +133,7 @@ if __name__ == '__main__':
             print("English NES evaluation")
 
             ##########################################
+            print("#"*50)
             print("#1. Extracted IOB format")
             en_nes_output1 = []
             for x, y in list(zip(df.words, df.en_nes_output1)):
@@ -137,18 +143,20 @@ if __name__ == '__main__':
                     labels = 'O '*len(words)
                 labels =  filter_text(labels).split(' ')
                 en_nes_output1.append(labels)
+            df['en_nes_output1_processed'] = en_nes_output1
 
             en_nes_output1_processed = []
             for x, y in zip(df.words, df.en_nes_output1_processed):
                 terms =  extract_entities(eval(x), y)
                 en_nes_output1_processed.extend(terms)
                 
-            _, _, _, precision, recall, fscore = computeTermEvalMetrics(en_nes_output1, gold_list)
+            _, _, _, precision, recall, fscore = computeTermEvalMetrics(en_nes_output1_processed, gold_list)
             print("Precision: " + str(precision))
             print("Recall: " + str(recall))
             print("F-score: " + str(fscore))
 
             ##########################################
+            print("#"*50)
             print("#2. Extracted candidate term list")
             en_nes_output2 = []
             for x in df['en_nes_output2']:
@@ -167,6 +175,7 @@ if __name__ == '__main__':
             print("F-score: " + str(fscore))
 
             ##########################################
+            print("#"*50)
             print("#3. Masking terms")
             df['en_nes_output3_processed'] = [extract_between_markers(x) for x in df['en_nes_output3']]
             en_nes_output3_processed = []
@@ -185,7 +194,8 @@ if __name__ == '__main__':
             print("French ANN evaluation")
 
             ##########################################
-            print("#1. Extracted candidate term list")
+            print("#"*50)
+            print("#1. Extracted IOB format")
             fr_ann_output1 = []
             for x, y in list(zip(df.words, df.fr_ann_output1)):
                 if x == 'nan':
@@ -211,6 +221,7 @@ if __name__ == '__main__':
             print("F-score: " + str(fscore))
 
             ##########################################
+            print("#"*50)
             print("#2. Extracted candidate term list")
             fr_ann_output2 = []
             for x in df['fr_ann_output2']:
@@ -226,6 +237,7 @@ if __name__ == '__main__':
             print("F-score: " + str(fscore))
 
             ##########################################
+            print("#"*50)
             print("#3. Masking terms")
             df['en_ann_output3_processed'] = [extract_between_markers(x) for x in df['fr_ann_output3']]
             en_ann_output3_processed = []
@@ -241,6 +253,7 @@ if __name__ == '__main__':
             print("French NES evaluation")
 
             ##########################################
+            print("#"*50)
             print("#1. Extracted candidate term list")
             fr_nes_output1 = []
             for x, y in list(zip(df.words, df.fr_nes_output1)):
@@ -267,6 +280,7 @@ if __name__ == '__main__':
             print("F-score: " + str(fscore))
 
             ##########################################
+            print("#"*50)
             print("#2. Extracted candidate term list")
             
             fr_nes_output2 = []
@@ -281,6 +295,7 @@ if __name__ == '__main__':
             print("F-score: " + str(fscore))
 
             ##########################################
+            print("#"*50)
             print("#3. Masking terms")
             df['fr_nes_output3_processed'] = [extract_between_markers(x) for x in df['fr_nes_output3']]
             fr_nes_output3_processed = []
@@ -298,7 +313,8 @@ if __name__ == '__main__':
         if args.ver == 'ann':
             print("Dutch ANN evaluation")
             ##########################################
-            print("#1. Extracted candidate term list")
+            print("#"*50)
+            print("#1. Extracted IOB format")
             nl_ann_output1 = []
             count =  0
             for x, y in list(zip(df.words, df.nl_ann_output1)):
@@ -329,10 +345,11 @@ if __name__ == '__main__':
             print("F-score: " + str(fscore))
 
             ##########################################
+            print("#"*50)
             print("#2. Extracted candidate term list")
             nl_ann_output2 = []
             for x in df['nl_ann_output2']:
-                if x.startswith('[') and x.endswith(']') and x.count('[') == 1:
+                if str(x).startswith('[') and str(x).endswith(']') and str(x).count('[') == 1:
                     temp = x[2:-2].replace("', '", ',').split(',')
                     nl_ann_output2.extend(temp)
             nl_ann_output2 = [x for x in nl_ann_output2 if len(x) != 0]
@@ -343,6 +360,7 @@ if __name__ == '__main__':
             print("F-score: " + str(fscore))
 
             ##########################################
+            print("#"*50)
             print("#3. Masking terms")
             df['nl_ann_output3_processed'] = [extract_between_markers(str(x)) for x in df['nl_ann_output3']]
             nl_ann_output3_processed = []
@@ -357,13 +375,15 @@ if __name__ == '__main__':
         elif args.ver == 'nes':
             print("Dutch NES evaluation")
 
-            ##########################################
-            print("#1. Extracted candidate term list")
+            #########################################
+            print("#"*50)
+            print("#1. Extracted IOB format")
+            # print(len(df))
             nl_nes_output1 = []
             count =  0
             for x, y in list(zip(df.words, df.nl_nes_output1)):
-                # print(count)
-                if str(x) == 'nan':
+                # print(count, x, y)
+                if str(x) == 'nan' or str(y) == 'nan':
                     words = []
                     labels = ''
                 else:
@@ -389,6 +409,7 @@ if __name__ == '__main__':
             print("F-score: " + str(fscore))
 
             ##########################################
+            print("#"*50)
             print("#2. Extracted candidate term list")
             nl_nes_output2 = []
             for x in df['nl_nes_output2']:
@@ -403,6 +424,7 @@ if __name__ == '__main__':
             print("F-score: " + str(fscore))
 
             ##########################################
+            print("#"*50)
             print("#3. Masking terms")
             df['nl_nes_output3_processed'] = [extract_between_markers(str(x)) for x in df['nl_nes_output3']]
             nl_nes_output3_processed = []
