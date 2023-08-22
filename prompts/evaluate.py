@@ -68,8 +68,6 @@ if __name__ == '__main__':
     parser.add_argument("--data_path", default="data_path", type=str, required=True)
     parser.add_argument("--lang", default="language", type=str, required=True)
     parser.add_argument("--ver", default="version", type=str, required=True)
-    # parser.add_argument("--format", default="format", type=str, required=True)
-    parser.add_argument("--output_path", default="output_path", type=str, required=True)
     args = parser.parse_args()
 
     df = pd.read_csv(args.data_path)
