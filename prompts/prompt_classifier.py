@@ -1,7 +1,4 @@
 import openai
-import os
-import re
-import ast
 import time
 import pandas as pd
 import argparse
