@@ -23,6 +23,8 @@ The experiments were conducted on ACTER datasets:
 |Languages|English, French, and Dutch|
 |Domains|Corruption,  Wind energy, Equitation, Heart failure|
 
+Download the ACTER dataset at [here](https://github.com/AylaRT/ACTER) and save into ACTER folder.
+
 ## 4. Implementation
 
 ### 4.1. Models
