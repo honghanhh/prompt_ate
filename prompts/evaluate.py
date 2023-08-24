@@ -239,12 +239,12 @@ if __name__ == '__main__':
             ##########################################
             print("#"*50)
             print("#3. Masking terms")
-            df['en_ann_output3_processed'] = [extract_between_markers(x) for x in df['fr_ann_output3']]
-            en_ann_output3_processed = []
-            for x in df['en_ann_output3_processed']:
-                en_ann_output3_processed.extend(x)
+            df['fr_ann_output3_processed'] = [extract_between_markers(x) for x in df['fr_ann_output3']]
+            fr_ann_output3_processed = []
+            for x in df['fr_ann_output3_processed']:
+                fr_ann_output3_processed.extend(x)
             
-            _, _, _, precision, recall, fscore = computeTermEvalMetrics(en_ann_output3_processed, gold_list)
+            _, _, _, precision, recall, fscore = computeTermEvalMetrics(fr_ann_output3_processed, gold_list)
             print("Precision: " + str(precision))
             print("Recall: " + str(recall))
             print("F-score: " + str(fscore))
