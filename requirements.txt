@@ -1,1 +1,6 @@
 openai==0.27.8
+transformers 
+einops 
+accelerate 
+langchain 
+bitsandbytes
