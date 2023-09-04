@@ -130,7 +130,7 @@ def prompt_design(lang, ver, format):
                           "\n"
                           "Sentence: 'Moreover, there is yet to be established a common consensus being used in current assays .'\n"
                           "Domain: Heart failure\n"
-                          "Output:[]\n"
+                          "Output: []\n"
                           "\n"
                           "Sentence: {}\n"
                           "Domain: {}\n"

@@ -23,6 +23,47 @@ def prompt_design(lang, ver, format):
             if format == 1:
                 PROMPT = """
                 As an excellent automatic term extraction (ATE) system, extract the terms in the Heart Failure domain given the following text delimited by triple backquotes. Named entities are not considered as terms.
+                Output Format: IOB labeling for each word and punctuation where B stands for the beginning word in the term, I stands for the word inside the term, and O stands for the word not part of the term.
+                
+                Examples of the output format: 
+                Sentence: 'Treatment of anemia in patients with heart disease : a clinical practice guideline from the American College of Physicians .'
+                Domain: Heart failure
+                Output: 'O O B O B O B I O O B I I O O O O O B O'
+                Sentence: 'Recommendation 2 : ACP recommends against the use of erythropoiesis-stimulating agents in patients with mild to moderate anemia and congestive heart failure or coronary heart disease .'
+                Domain: Heart failure
+                Output: 'O O O O O O O O O B I O B O O O O B O B I I O B I I O'
+                Sentence: 'Moreover , there is yet to be established a common consensus being used in current assays .'
+                Domain: Heart failure
+                Output: 'O O O O O O O O O O O O O O O O O'
+
+                Sentence: ```{text}```
+                Domain: Heart failure
+                Output:
+                """
+            elif format == 2:
+                PROMPT = """
+                As an excellent automatic term extraction (ATE) system, extract the terms in the Heart Failure domain given the following text delimited by triple backquotes. Named entities are not considered as terms.
+                Output Format: [list of terms present]
+                If no terms are presented, keep it empty list: []
+                
+                Examples of the output format:
+                Sentence: 'Treatment of anemia in patients with heart disease : a clinical practice guideline from the American College of Physicians .'
+                Domain: Heart failure
+                Output: ['anemia', 'patients', 'heart disease', 'clinical practice guideline', 'Physicians']
+                Sentence: 'Recommendation 2 : ACP recommends against the use of erythropoiesis-stimulating agents in patients with mild to moderate anemia and congestive heart failure or coronary heart disease .'
+                Domain: Heart failure
+                Output: ['erythropoiesis-stimulating agents', 'patients', 'anemia', 'congestive heart failure', 'coronary heart disease']
+                Sentence: 'Moreover , there is yet to be established a common consensus being used in current assays .'
+                Domain: Heart failure
+                Output: []
+
+                Sentence: ```{text}```
+                Domain: Heart failure
+                Output: 
+                """
+            elif format == 3:
+                PROMPT = """
+                As an excellent automatic term extraction (ATE) system, extract the terms in the Heart Failure domain given the following text delimited by triple backquotes. Named entities are not considered as terms.
                 Examples of the output format: 
                 Sentence: 'Treatment of anemia in patients with heart disease : a clinical practice guideline from the American College of Physicians .'
                 Domain: Heart failure
@@ -36,16 +77,53 @@ def prompt_design(lang, ver, format):
 
                 Sentence: ```{text}```
                 Domain: Heart failure
-                Output: 
+                Output:
                 """
-            elif format == 2:
-                PROMPT = ""
-            elif format == 3:
-                PROMPT = ""
             else:
                 raise Exception("Format not supported")
         elif ver == 'nes':
             if format == 1:
+                PROMPT = """
+                As an excellent automatic term extraction (ATE) system, extract the terms in the Heart Failure domain given the following text delimited by triple backquotes. Both terms and named entities are considered as terms.
+                Output Format: IOB labeling for each word and punctuation where B stands for the beginning word in the term, I stands for the word inside the term, and O stands for the word not part of the term.
+                
+                Examples of the output format: 
+                Sentence: 'Treatment of anemia in patients with heart disease : a clinical practice guideline from the American College of Physicians .'
+                Domain: Heart failure
+                Output: 'O O B O B O B I O O B I I O O B I I I O'
+                Sentence: 'Recommendation 2 : ACP recommends against the use of erythropoiesis-stimulating agents in patients with mild to moderate anemia and congestive heart failure or coronary heart disease .'
+                Domain: Heart failure
+                Output: 'O O O B O O O O O B I O B O O O O B O B I I O B I I O'
+                Sentence: 'Moreover , there is yet to be established a common consensus being used in current assays .'
+                Domain: Heart failure
+                Output: 'O O O O O O O O O O O O O O O O O'
+
+                Sentence: ```{text}```
+                Domain: Heart failure
+                Output:
+                """
+            elif format == 2:
+                PROMPT = """
+                As an excellent automatic term extraction (ATE) system, extract the terms in the Heart Failure domain given the following text delimited by triple backquotes. Both terms and named entities are considered as terms.
+                Output Format: [list of terms present]
+                If no terms are presented, keep it empty list: []
+                
+                Examples of the output format:
+                Sentence: 'Treatment of anemia in patients with heart disease : a clinical practice guideline from the American College of Physicians .'
+                Domain: Heart failure
+                Output: ['anemia', 'patients', 'heart disease', 'clinical practice guideline', 'American College of Physicians']
+                Sentence: 'Recommendation 2 : ACP recommends against the use of erythropoiesis-stimulating agents in patients with mild to moderate anemia and congestive heart failure or coronary heart disease .'
+                Domain: Heart failure
+                Output: ['ACP', 'erythropoiesis-stimulating agents', 'patients', 'anemia', 'congestive heart failure', 'coronary heart disease']
+                Sentence: 'Moreover , there is yet to be established a common consensus being used in current assays .'
+                Domain: Heart failure
+                Output: []
+
+                Sentence: ```{text}```
+                Domain: Heart failure
+                Output: 
+                """
+            elif format == 3:
                 PROMPT = """
                 As an excellent automatic term extraction (ATE) system, extract the terms in the Heart Failure domain given the following text delimited by triple backquotes. Both terms and named entities are considered as terms.
                 Examples of the output format: 
@@ -61,12 +139,8 @@ def prompt_design(lang, ver, format):
 
                 Sentence: ```{text}```
                 Domain: Heart failure
-                Output: 
+                Output:
                 """
-            elif format == 2:
-                PROMPT = ""
-            elif format == 3:
-                PROMPT = ""
             else:
                 raise Exception("Format not supported")
         else:
@@ -74,9 +148,45 @@ def prompt_design(lang, ver, format):
     elif lang == 'fr':
         if ver == 'ann':
             if format == 1:
-                PROMPT = ""
+                PROMPT = """
+                As an excellent automatic term extraction (ATE) system, extract the terms in the Heart Failure domain given the following text delimited by triple backquotes. Named entities are not considered as terms.
+                Output Format: IOB labeling for each word and punctuation where B stands for the beginning word in the term, I stands for the word inside the term, and O stands for the word not part of the term.
+                
+                Examples of the output format: 
+                Sentence: 'Prévalence et prise en charge de l' insuffisance cardiaque en France : enquête nationale auprès des médecins généralistes du réseau Sentinelles .'
+                Domain: Heart failure
+                Output: 'B O B I I O O B I O O O O O O O B I O O O O'
+                Sentence: 'Recommandations de la Conférence consensuelle de la Société canadienne de cardiologie 2006 sur l' insuffisance cardiaque : Diagnostic et prise en charge .'
+                Domain: Heart failure
+                Output: 'O O O O O O O O O O B O O O B I O B O B I I O'
+                Sentence: 'La durée moyenne de séjour est de 11 jours .'
+                Domain: Heart failure
+                Output: 'O O O O O O O O O O'
+
+                Sentence: ```{text}```
+                Domain: Heart failure
+                Output:
+                """
             elif format == 2:
-                PROMPT = ""
+                PROMPT = """
+                As an excellent automatic term extraction (ATE) system, extract the terms in the Heart Failure domain given the following text delimited by triple backquotes. Named entities are not considered as terms.
+                Output Format: [list of terms present]
+                If no terms are presented, keep it empty list: []
+                
+                Examples of the output format:  
+                Sentence: 'Prévalence et prise en charge de l' insuffisance cardiaque en France : enquête nationale auprès des médecins généralistes du réseau Sentinelles .'
+                Domain: Heart failure
+                Output: ['Prévalence', 'prise en charge', 'insuffisance cardiaque', 'médecins généralistes']
+                Sentence: 'Recommandations de la Conférence consensuelle de la Société canadienne de cardiologie 2006 sur l' insuffisance cardiaque : Diagnostic et prise en charge .'
+                Domain: Heart failure
+                Output: ['cardiologie', 'insuffisance cardiaque', 'Diagnostic', 'prise en charge']
+                Sentence: 'La durée moyenne de séjour est de 11 jours .'
+                Domain: Heart failure
+                Output: []
+
+                Sentence: ```{text}```
+                Domain: Heart failure
+                Output: """
             elif format == 3:
                 PROMPT = """
                 As an excellent automatic term extraction (ATE) system, extract the terms in the Heart Failure domain given the following text delimited by triple backquotes. Named entities are not considered as terms.
@@ -93,15 +203,52 @@ def prompt_design(lang, ver, format):
 
                 Sentence: ```{text}```
                 Domain: Heart failure
-                Output: 
+                Output:
                 """
             else:
                 raise Exception("Format not supported")
         elif ver == 'nes':
             if format == 1:
-                PROMPT = ""
+                PROMPT = """
+                As an excellent automatic term extraction (ATE) system, extract the terms in the Heart Failure domain given the following text delimited by triple backquotes. Both terms and named entities are considered as terms.
+                Output Format: IOB labeling for each word and punctuation where B stands for the beginning word in the term, I stands for the word inside the term, and O stands for the word not part of the term.
+                
+                Examples of the output format: 
+                Sentence: 'Prévalence et prise en charge de l' insuffisance cardiaque en France : enquête nationale auprès des médecins généralistes du réseau Sentinelles .'
+                Domain: Heart failure
+                Output: 'B O B I I O O B I O B O O O O O B I O B I O'
+                Sentence: 'Recommandations de la Conférence consensuelle de la Société canadienne de cardiologie 2006 sur l' insuffisance cardiaque : Diagnostic et prise en charge .'
+                Domain: Heart failure
+                Output: 'O O O O O O O O O O B O O O B I O B O B I I O'
+                Sentence: 'La durée moyenne de séjour est de 11 jours .'
+                Domain: Heart failure
+                Output: 'O O O O O O O O O O'
+
+                Sentence: ```{text}```
+                Domain: Heart failure
+                Output:
+                """
             elif format == 2:
-                PROMPT = ""
+                PROMPT = """
+                As an excellent automatic term extraction (ATE) system, extract the terms in the Heart Failure domain given the following text delimited by triple backquotes. Both terms and named entities are considered as terms.
+                Output Format: [list of terms present]
+                If no terms are presented, keep it empty list: []
+                
+                Examples of the output format:  
+                Sentence: 'Prévalence et prise en charge de l' insuffisance cardiaque en France : enquête nationale auprès des médecins généralistes du réseau Sentinelles .'
+                Domain: Heart failure
+                Output: ['Prévalence', 'prise en charge', 'insuffisance cardiaque', 'France', 'médecins généralistes', 'réseau Sentinelles']
+                Sentence: 'Recommandations de la Conférence consensuelle de la Société canadienne de cardiologie 2006 sur l' insuffisance cardiaque : Diagnostic et prise en charge .'
+                Domain: Heart failure
+                Output: ['Conférence consensuelle de la Société canadienne de cardiologie', 'insuffisance cardiaque', 'Diagnostic', 'prise en charge']
+                Sentence: 'La durée moyenne de séjour est de 11 jours .'
+                Domain: Heart failure
+                Output: []
+
+                Sentence: ```{text}```
+                Domain: Heart failure
+                Output: 
+                """
             elif format == 3:
                 PROMPT = """
                 As an excellent automatic term extraction (ATE) system, extract the terms in the Heart Failure domain given the following text delimited by triple backquotes. Both terms and named entities are considered as terms.
@@ -118,7 +265,7 @@ def prompt_design(lang, ver, format):
 
                 Sentence: ```{text}```
                 Domain: Heart failure
-                Output: 
+                Output:
                 """
             else:
                 raise Exception("Format not supported")
@@ -128,7 +275,25 @@ def prompt_design(lang, ver, format):
     elif lang == 'nl':
         if ver == 'ann':
             if format == 1:
-                PROMPT = ""
+                PROMPT = """
+                As an excellent automatic term extraction (ATE) system, extract the terms in the Heart Failure domain given the following text delimited by triple backquotes. Named entities are not considered as terms.
+                Output Format: IOB labeling for each word and punctuation where B stands for the beginning word in the term, I stands for the word inside the term, and O stands for the word not part of the term.
+                
+                Examples of the output format: 
+                Sentence: 'De bevindingen kunnen een grote rol spelen bij de herziening van de standaard Hartfalen van het Nederlands Huisartsen Genootschap .'
+                Domain: Heart failure
+                Output: 'O O O O O O O O O O O O O B O O O B O O'
+                Sentence: 'Methode De reviewers zochten tot 2004 in MEDLINE , EMBASE , HERDIN en de Cochrane Library naar RCT's bij patiënten met chronisch hartfalen waarbij ( lis- of thiazide ) diuretica werden vergeleken met placebo of andere medicatie .'
+                Domain: Heart failure
+                Output: 'O O O O O O O O O O O O O O O O O B O B O B I O O B O B O B O O O B O O B O'
+                Sentence: 'Na 1 nacht vasten werden lichaamsgewicht en vitale tekenen genoteerd .'
+                Domain: Heart failure
+                Output: 'O O O O O O O O O O O'
+
+                Sentence: ```{text}```
+                Domain: Heart failure
+                Output:
+                """
             elif format == 2:
                 PROMPT = ""
             elif format == 3:
@@ -147,13 +312,31 @@ def prompt_design(lang, ver, format):
 
                 Sentence: ```{text}```
                 Domain: Heart failure
-                Output: 
+                Output:
                 """
             else:
                 raise Exception("Format not supported")
         elif ver == 'nes':
             if format == 1:
-                PROMPT = ""
+                PROMPT = """
+                As an excellent automatic term extraction (ATE) system, extract the terms in the Heart Failure domain given the following text delimited by triple backquotes. Both terms and named entities are considered as terms.
+                Output Format: IOB labeling for each word and punctuation where B stands for the beginning word in the term, I stands for the word inside the term, and O stands for the word not part of the term.
+                
+                Examples of the output format: 
+                Sentence: 'De bevindingen kunnen een grote rol spelen bij de herziening van de standaard Hartfalen van het Nederlands Huisartsen Genootschap .'
+                Domain: Heart failure
+                Output: 'O O O O O O O O O O O O O B O O B I I O'
+                Sentence: 'Methode De reviewers zochten tot 2004 in MEDLINE , EMBASE , HERDIN en de Cochrane Library naar RCT's bij patiënten met chronisch hartfalen waarbij ( lis- of thiazide ) diuretica werden vergeleken met placebo of andere medicatie .'
+                Domain: Heart failure
+                Output: 'O O O O O O O B O B O B O O B I O B O B O B I O O B O B O B O O O B O O B O'
+                Sentence: 'Na 1 nacht vasten werden lichaamsgewicht en vitale tekenen genoteerd .'
+                Domain: Heart failure
+                Output: 'O O O O O O O O O O O'
+
+                Sentence: ```{text}```
+                Domain: Heart failure
+                Output:
+                """
             elif format == 2:
                 PROMPT = ""
             elif format == 3:
@@ -172,7 +355,7 @@ def prompt_design(lang, ver, format):
 
                 Sentence: ```{text}```
                 Domain: Heart failure
-                Output: 
+                Output:
                 """
             else:
                 raise Exception("Format not supported")
