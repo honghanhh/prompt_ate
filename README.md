@@ -94,6 +94,34 @@ chmod +x run_eval.sh
 ./run_eval.sh
 ```
 
+### 4.4. Llama2 Prompting
+
+Login `huggingface-clo` by Huggingface account tokens via this command
+
+```huggingface-cli login```
+
+and run the following command to run the model:
+
+```python
+cd prompts/
+python llama2.py [--lang] [--ver] [--formats] [--output_path]
+```
+
+where:
+
+- `--lang` is the language of the corpus;
+- `--ver` is the version of corpus (ANN or NES);
+- `--formats` is the prompting designed format (1,2, or 3);
+- `--output_path` is the path to the output csv file.
+
+Run the following command to run all the models:
+
+```python
+cd prompts/
+chmod +x run_llama.sh
+./run_llama.sh
+```
+
 ## 5. Results
 
 ### 5.1. ANN gold standard
