@@ -72,7 +72,7 @@ def prompt_design(lang, ver, format):
                 Sentence: ```Treatment of anemia in patients with heart disease : a clinical practice guideline from the American College of Physicians .```
                 Domain: Heart failure
                 [/INST]
-                Output: ['anemia', 'patients', 'heart disease', 'clinical practice guideline', 'Physicians']
+                Output: ["anemia", "patients", "heart disease", "clinical practice guideline", "Physicians"]
                 </s>
                 
                 <s>
@@ -80,7 +80,7 @@ def prompt_design(lang, ver, format):
                 Sentence: ```Recommendation 2 : ACP recommends against the use of erythropoiesis-stimulating agents in patients with mild to moderate anemia and congestive heart failure or coronary heart disease .```
                 Domain: Heart failure
                 [/INST]
-                Output: ['erythropoiesis-stimulating agents', 'patients', 'anemia', 'congestive heart failure', 'coronary heart disease']
+                Output: ["erythropoiesis-stimulating agents", "patients", "anemia", "congestive heart failure", "coronary heart disease"]
                 </s>
                 
                 <s>
@@ -109,7 +109,7 @@ def prompt_design(lang, ver, format):
                 Sentence: ```Treatment of anemia in patients with heart disease : a clinical practice guideline from the American College of Physicians .```
                 Domain: Heart failure
                 [/INST]
-                Output: 'Treatment of @@anemia## in @@patients## with @@heart disease## : a @@clinical practice guideline## from the American College of @@Physicians## .'
+                Output: "Treatment of @@anemia## in @@patients## with @@heart disease## : a @@clinical practice guideline## from the American College of @@Physicians## ."
                 </s>
                 
                 <s>
@@ -117,7 +117,7 @@ def prompt_design(lang, ver, format):
                 Sentence: ```Recommendation 2 : ACP recommends against the use of erythropoiesis-stimulating agents in patients with mild to moderate anemia and congestive heart failure or coronary heart disease .```
                 Domain: Heart failure
                 [/INST]
-                Output: 'Recommendation 2 : ACP recommends against the use of @@erythropoiesis-stimulating agents## in @@patients## with mild to moderate @@anemia## and @@congestive heart failure## or @@coronary heart disease## .'
+                Output: "Recommendation 2 : ACP recommends against the use of @@erythropoiesis-stimulating agents## in @@patients## with mild to moderate @@anemia## and @@congestive heart failure## or @@coronary heart disease## ."
                 </s>
                 
                 <s>
@@ -125,7 +125,7 @@ def prompt_design(lang, ver, format):
                 Sentence: ```Moreover , there is yet to be established a common consensus being used in current assays .```
                 Domain: Heart failure
                 [/INST]
-                Output: 'Moreover , there is yet to be established a common consensus being used in current assays .'
+                Output: "Moreover , there is yet to be established a common consensus being used in current assays ."
                 </s>
                 
                 <s>
@@ -189,7 +189,7 @@ def prompt_design(lang, ver, format):
                 Sentence: ```Treatment of anemia in patients with heart disease : a clinical practice guideline from the American College of Physicians .```
                 Domain: Heart failure
                 [/INST]
-                Output: ['anemia', 'patients', 'heart disease', 'clinical practice guideline', 'American College of Physicians']
+                Output: ["anemia", "patients", "heart disease", "clinical practice guideline", "American College of Physicians"]
                 </s>
                 
                 <s>
@@ -197,7 +197,7 @@ def prompt_design(lang, ver, format):
                 Sentence: ```Recommendation 2 : ACP recommends against the use of erythropoiesis-stimulating agents in patients with mild to moderate anemia and congestive heart failure or coronary heart disease .```
                 Domain: Heart failure
                 [/INST]
-                Output: ['ACP', 'erythropoiesis-stimulating agents', 'patients', 'anemia', 'congestive heart failure', 'coronary heart disease']
+                Output: ["ACP", "erythropoiesis-stimulating agents", "patients", "anemia", "congestive heart failure", "coronary heart disease"]
                 </s>
                 
                 <s>
@@ -227,7 +227,7 @@ def prompt_design(lang, ver, format):
                 Sentence: ```'Treatment of anemia in patients with heart disease : a clinical practice guideline from the American College of Physicians .```
                 Domain: Heart failure
                 [/INST]
-                Output: 'Treatment of @@anemia## in @@patients## with @@heart disease## : a @@clinical practice guideline## from the @@American College of Physicians## .'
+                Output: "Treatment of @@anemia## in @@patients## with @@heart disease## : a @@clinical practice guideline## from the @@American College of Physicians## ."
                 </s>
                 
                 <s>
@@ -235,7 +235,7 @@ def prompt_design(lang, ver, format):
                 Sentence: ```Recommendation 2 : ACP recommends against the use of erythropoiesis-stimulating agents in patients with mild to moderate anemia and congestive heart failure or coronary heart disease .```
                 Domain: Heart failure
                 [/INST]
-                Output: 'Recommendation 2 : @@ACP## recommends against the use of @@erythropoiesis-stimulating agents## in @@patients## with mild to moderate @@anemia## and @@congestive heart failure## or @@coronary heart disease## .'
+                Output: "Recommendation 2 : @@ACP## recommends against the use of @@erythropoiesis-stimulating agents## in @@patients## with mild to moderate @@anemia## and @@congestive heart failure## or @@coronary heart disease## ."
                 </s>
                 
                 <s>
@@ -243,7 +243,7 @@ def prompt_design(lang, ver, format):
                 Sentence: ```Moreover , there is yet to be established a common consensus being used in current assays .```
                 Domain: Heart failure
                 [/INST]
-                Output: 'Moreover , there is yet to be established a common consensus being used in current assays .'
+                Output: "Moreover , there is yet to be established a common consensus being used in current assays ."
                 </s>
                 
                 <s>
@@ -310,7 +310,7 @@ def prompt_design(lang, ver, format):
                 Sentence: ```Prévalence et prise en charge de l' insuffisance cardiaque en France : enquête nationale auprès des médecins généralistes du réseau Sentinelles .```
                 Domain: Heart failure
                 [/INST]
-                Output: ['Prévalence', 'prise en charge', 'insuffisance cardiaque', 'médecins généralistes']
+                Output: ["Prévalence", "prise en charge", "insuffisance cardiaque", "médecins généralistes"]
                 </s>
                 
                 <s>
@@ -318,7 +318,7 @@ def prompt_design(lang, ver, format):
                 Sentence: ```Recommandations de la Conférence consensuelle de la Société canadienne de cardiologie 2006 sur l' insuffisance cardiaque : Diagnostic et prise en charge .```
                 Domain: Heart failure
                 [/INST]
-                Output: ['cardiologie', 'insuffisance cardiaque', 'Diagnostic', 'prise en charge']
+                Output: ["cardiologie", "insuffisance cardiaque", "Diagnostic", "prise en charge"]
                 </s>
                 
                 <s>
@@ -427,7 +427,7 @@ def prompt_design(lang, ver, format):
                 Sentence: ```Prévalence et prise en charge de l' insuffisance cardiaque en France : enquête nationale auprès des médecins généralistes du réseau Sentinelles .```
                 Domain: Heart failure
                 [/INST]
-                Output: ['Prévalence', 'prise en charge', 'insuffisance cardiaque', 'France', 'médecins généralistes', 'réseau Sentinelles']\
+                Output: ["Prévalence", "prise en charge", "insuffisance cardiaque", "France", "médecins généralistes", "réseau Sentinelles"]
                 </s>
                 
                 <s>
@@ -435,7 +435,7 @@ def prompt_design(lang, ver, format):
                 Sentence: ```Recommandations de la Conférence consensuelle de la Société canadienne de cardiologie 2006 sur l' insuffisance cardiaque : Diagnostic et prise en charge .```
                 Domain: Heart failure
                 [/INST]
-                Output: ['Conférence consensuelle de la Société canadienne de cardiologie', 'insuffisance cardiaque', 'Diagnostic', 'prise en charge']
+                Output: ["Conférence consensuelle de la Société canadienne de cardiologie", "insuffisance cardiaque", "Diagnostic", "prise en charge"]
                 </s>
                 
                 <s>
@@ -542,7 +542,7 @@ def prompt_design(lang, ver, format):
                 Sentence: ```De bevindingen kunnen een grote rol spelen bij de herziening van de standaard Hartfalen van het Nederlands Huisartsen Genootschap .```
                 Domain: Heart failure
                 [/INST]
-                Output: ['Hartfalen', 'Huisartsen']
+                Output: ["Hartfalen", "Huisartsen"]
                 </s>
                 
                 <s>
@@ -608,13 +608,13 @@ def prompt_design(lang, ver, format):
                 <<SYS>>
                 As an excellent automatic term extraction (ATE) system, extract the terms in the Heart Failure domain given the following text delimited by triple backquotes. Both terms and named entities are considered as terms.
                 Output Format: IOB labeling for each word and punctuation where B stands for the beginning word in the term, I stands for the word inside the term, and O stands for the word not part of the term.
-                
+
                 Examples of the output format:
                 <</SYS>>
                 Sentence: ```De bevindingen kunnen een grote rol spelen bij de herziening van de standaard Hartfalen van het Nederlands Huisartsen Genootschap .```
                 Domain: Heart failure
                 [/INST]
-                Output: 'De bevindingen kunnen een grote rol spelen bij de herziening van de standaard @@Hartfalen## van het @@Nederlands Huisartsen Genootschap## .'
+                Output: "De bevindingen kunnen een grote rol spelen bij de herziening van de standaard @@Hartfalen## van het @@Nederlands Huisartsen Genootschap## ."
                 </s>
                 
                 <s>
@@ -622,7 +622,7 @@ def prompt_design(lang, ver, format):
                 Sentence: ```Methode De reviewers zochten tot 2004 in MEDLINE , EMBASE , HERDIN en de Cochrane Library naar RCT's bij patiënten met chronisch hartfalen waarbij ( lis- of thiazide ) diuretica werden vergeleken met placebo of andere medicatie .```
                 Domain: Heart failure
                 [/INST]
-                Output: 'Methode De reviewers zochten tot 2004 in @@MEDLINE## , @@EMBASE## , @@HERDIN## en de @@Cochrane Library## naar @@RCT's## bij @@patiënten## met @@chronisch hartfalen## waarbij ( @@lis-## of @@thiazide## ) @@diuretica## werden vergeleken met @@placebo## of andere @@medicatie## .'
+                Output: "Methode De reviewers zochten tot 2004 in @@MEDLINE## , @@EMBASE## , @@HERDIN## en de @@Cochrane Library## naar @@RCT's## bij @@patiënten## met @@chronisch hartfalen## waarbij ( @@lis-## of @@thiazide## ) @@diuretica## werden vergeleken met @@placebo## of andere @@medicatie## ."
                 </s>
                 
                 <s>
@@ -630,7 +630,7 @@ def prompt_design(lang, ver, format):
                 Sentence: ```Na 1 nacht vasten werden lichaamsgewicht en vitale tekenen genoteerd .```
                 Domain: Heart failure
                 [/INST]
-                Output: 'Na 1 nacht vasten werden lichaamsgewicht en vitale tekenen genoteerd .'
+                Output: "Na 1 nacht vasten werden lichaamsgewicht en vitale tekenen genoteerd ."
                 </s>
                 
                 <s>
@@ -638,23 +638,6 @@ def prompt_design(lang, ver, format):
                 Sentence: ```{text}```
                 Domain: Heart failure
                 [/INST]
-                As an excellent automatic term extraction (ATE) system, extract the terms in the Heart Failure domain given the following text delimited by triple backquotes. Both terms and named entities are considered as terms.
-                Output Format: IOB labeling for each word and punctuation where B stands for the beginning word in the term, I stands for the word inside the term, and O stands for the word not part of the term.
-                
-                Examples of the output format: 
-                Sentence: 'De bevindingen kunnen een grote rol spelen bij de herziening van de standaard Hartfalen van het Nederlands Huisartsen Genootschap .'
-                Domain: Heart failure
-                Output: 'O O O O O O O O O O O O O B O O B I I O'
-                Sentence: 'Methode De reviewers zochten tot 2004 in MEDLINE , EMBASE , HERDIN en de Cochrane Library naar RCT's bij patiënten met chronisch hartfalen waarbij ( lis- of thiazide ) diuretica werden vergeleken met placebo of andere medicatie .'
-                Domain: Heart failure
-                Output: 'O O O O O O O B O B O B O O B I O B O B O B I O O B O B O B O O O B O O B O'
-                Sentence: 'Na 1 nacht vasten werden lichaamsgewicht en vitale tekenen genoteerd .'
-                Domain: Heart failure
-                Output: 'O O O O O O O O O O O'
-
-                Sentence: ```{text}```
-                Domain: Heart failure
-                Output:
                 """
             elif format == 2:
                 PROMPT = """
@@ -670,7 +653,7 @@ def prompt_design(lang, ver, format):
                 Sentence: ```De bevindingen kunnen een grote rol spelen bij de herziening van de standaard Hartfalen van het Nederlands Huisartsen Genootschap .```
                 Domain: Heart failure
                 [/INST]
-                Output: ['Hartfalen', 'Nederlands Huisartsen Genootschap']
+                Output: ["Hartfalen", "Nederlands Huisartsen Genootschap"]
                 </s>
                 
                 <s>
@@ -678,7 +661,7 @@ def prompt_design(lang, ver, format):
                 Sentence: ```Methode De reviewers zochten tot 2004 in MEDLINE , EMBASE , HERDIN en de Cochrane Library naar RCT's bij patiënten met chronisch hartfalen waarbij ( lis- of thiazide ) diuretica werden vergeleken met placebo of andere medicatie .```
                 Domain: Heart failure
                 [/INST]
-                Output: ['MEDLINE', 'EMBASE', 'HERDIN', 'Cochrane Library', "RCT's","patiënten", "hronisch hartfalen", "lis-", "thiazide", "diuretica", "placebo", "medicatie"]
+                Output: ["MEDLINE", "EMBASE", "HERDIN", "Cochrane Library", "RCT's","patiënten", "hronisch hartfalen", "lis-", "thiazide", "diuretica", "placebo", "medicatie"]
                 </s>
                 
                 <s>
@@ -697,22 +680,43 @@ def prompt_design(lang, ver, format):
                 """
             elif format == 3:
                 PROMPT = """
+                
+                <s>
+                [INST]
+                <<SYS>>
                 As an excellent automatic term extraction (ATE) system, extract the terms in the Heart Failure domain given the following text delimited by triple backquotes. Both terms and named entities are considered as terms.
+                Output Format: [list of terms present]
+                If no terms are presented, keep it empty list: []
 
-                Examples of the output format: 
-                Sentence: 'De bevindingen kunnen een grote rol spelen bij de herziening van de standaard Hartfalen van het Nederlands Huisartsen Genootschap .'
+                Examples of the output format:
+                <</SYS>>
+                Sentence: ```De bevindingen kunnen een grote rol spelen bij de herziening van de standaard Hartfalen van het Nederlands Huisartsen Genootschap .```
                 Domain: Heart failure
-                Output: 'De bevindingen kunnen een grote rol spelen bij de herziening van de standaard @@Hartfalen## van het @@Nederlands Huisartsen Genootschap## .'
-                Sentence: 'Methode De reviewers zochten tot 2004 in MEDLINE , EMBASE , HERDIN en de Cochrane Library naar RCT's bij patiënten met chronisch hartfalen waarbij ( lis- of thiazide ) diuretica werden vergeleken met placebo of andere medicatie .'
+                [/INST]
+                Output: "De bevindingen kunnen een grote rol spelen bij de herziening van de standaard @@Hartfalen## van het @@Nederlands Huisartsen Genootschap## .'
+                </s>
+                
+                <s>
+                [INST]
+                Sentence: ```Methode De reviewers zochten tot 2004 in MEDLINE , EMBASE , HERDIN en de Cochrane Library naar RCT's bij patiënten met chronisch hartfalen waarbij ( lis- of thiazide ) diuretica werden vergeleken met placebo of andere medicatie .```
                 Domain: Heart failure
-                Output: 'Methode De reviewers zochten tot 2004 in @@MEDLINE## , @@EMBASE## , @@HERDIN## en de @@Cochrane Library## naar @@RCT's## bij @@patiënten## met @@chronisch hartfalen## waarbij ( @@lis-## of @@thiazide## ) @@diuretica## werden vergeleken met @@placebo## of andere @@medicatie## .'
-                Sentence: 'Na 1 nacht vasten werden lichaamsgewicht en vitale tekenen genoteerd .'
+                [/INST]
+                Output: "Methode De reviewers zochten tot 2004 in @@MEDLINE## , @@EMBASE## , @@HERDIN## en de @@Cochrane Library## naar @@RCT's## bij @@patiënten## met @@chronisch hartfalen## waarbij ( @@lis-## of @@thiazide## ) @@diuretica## werden vergeleken met @@placebo## of andere @@medicatie## .'
+                </s>
+                
+                <s>
+                [INST]
+                Sentence: ```Na 1 nacht vasten werden lichaamsgewicht en vitale tekenen genoteerd .```
                 Domain: Heart failure
-                Output: 'Na 1 nacht vasten werden lichaamsgewicht en vitale tekenen genoteerd .'
-
+                [/INST]
+                Output: "Na 1 nacht vasten werden lichaamsgewicht en vitale tekenen genoteerd ."
+                </s>
+                
+                <s>
+                [INST]
                 Sentence: ```{text}```
                 Domain: Heart failure
-                Output:
+                [/INST]
                 """
             else:
                 raise Exception("Format not supported")
