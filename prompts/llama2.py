@@ -22,124 +22,235 @@ def prompt_design(lang, ver, format):
         if ver == 'ann':
             if format == 1:
                 PROMPT = """
+                <s>
+                [INST]
+                <<SYS>>
                 As an excellent automatic term extraction (ATE) system, extract the terms in the Heart Failure domain given the following text delimited by triple backquotes. Named entities are not considered as terms.
                 Output Format: IOB labeling for each word and punctuation where B stands for the beginning word in the term, I stands for the word inside the term, and O stands for the word not part of the term.
-                
-                Examples of the output format: 
-                Sentence: 'Treatment of anemia in patients with heart disease : a clinical practice guideline from the American College of Physicians .'
-                Domain: Heart failure
-                Output: 'O O B O B O B I O O B I I O O O O O B O'
-                Sentence: 'Recommendation 2 : ACP recommends against the use of erythropoiesis-stimulating agents in patients with mild to moderate anemia and congestive heart failure or coronary heart disease .'
-                Domain: Heart failure
-                Output: 'O O O O O O O O O B I O B O O O O B O B I I O B I I O'
-                Sentence: 'Moreover , there is yet to be established a common consensus being used in current assays .'
-                Domain: Heart failure
-                Output: 'O O O O O O O O O O O O O O O O O'
 
+                Examples of the output format:
+                <</SYS>>
+                Sentence: ```Treatment of anemia in patients with heart disease : a clinical practice guideline from the American College of Physicians .```
+                Domain: Heart failure
+                [/INST]
+                Output: 'O O B O B O B I O O B I I O O O O O B O'
+                </s>
+                
+                <s>
+                [INST]
+                Sentence: ```Recommendation 2 : ACP recommends against the use of erythropoiesis-stimulating agents in patients with mild to moderate anemia and congestive heart failure or coronary heart disease .```
+                Domain: Heart failure
+                [/INST]
+                Output: 'O O O O O O O O O B I O B O O O O B O B I I O B I I O'
+                </s>
+                
+                <s>
+                [INST]
+                Sentence: ```Moreover , there is yet to be established a common consensus being used in current assays .```
+                Domain: Heart failure
+                [/INST]
+                Output: 'O O O O O O O O O O O O O O O O O'
+                </s>
+                
+                <s>
+                [INST]
                 Sentence: ```{text}```
                 Domain: Heart failure
-                Output:
+                [/INST]
                 """
             elif format == 2:
                 PROMPT = """
+                <s>
+                [INST]
+                <<SYS>>
                 As an excellent automatic term extraction (ATE) system, extract the terms in the Heart Failure domain given the following text delimited by triple backquotes. Named entities are not considered as terms.
                 Output Format: [list of terms present]
                 If no terms are presented, keep it empty list: []
-                
-                Examples of the output format:
-                Sentence: 'Treatment of anemia in patients with heart disease : a clinical practice guideline from the American College of Physicians .'
-                Domain: Heart failure
-                Output: ['anemia', 'patients', 'heart disease', 'clinical practice guideline', 'Physicians']
-                Sentence: 'Recommendation 2 : ACP recommends against the use of erythropoiesis-stimulating agents in patients with mild to moderate anemia and congestive heart failure or coronary heart disease .'
-                Domain: Heart failure
-                Output: ['erythropoiesis-stimulating agents', 'patients', 'anemia', 'congestive heart failure', 'coronary heart disease']
-                Sentence: 'Moreover , there is yet to be established a common consensus being used in current assays .'
-                Domain: Heart failure
-                Output: []
 
+                Examples of the output format:
+                <</SYS>>
+                Sentence: ```Treatment of anemia in patients with heart disease : a clinical practice guideline from the American College of Physicians .```
+                Domain: Heart failure
+                [/INST]
+                Output: ['anemia', 'patients', 'heart disease', 'clinical practice guideline', 'Physicians']
+                </s>
+                
+                <s>
+                [INST]
+                Sentence: ```Recommendation 2 : ACP recommends against the use of erythropoiesis-stimulating agents in patients with mild to moderate anemia and congestive heart failure or coronary heart disease .```
+                Domain: Heart failure
+                [/INST]
+                Output: ['erythropoiesis-stimulating agents', 'patients', 'anemia', 'congestive heart failure', 'coronary heart disease']
+                </s>
+                
+                <s>
+                [INST]
+                Sentence: ```Moreover , there is yet to be established a common consensus being used in current assays .```
+                Domain: Heart failure
+                [/INST]
+                Output: []
+                </s>
+                
+                <s>
+                [INST]
                 Sentence: ```{text}```
                 Domain: Heart failure
-                Output: 
+                [/INST]
                 """
             elif format == 3:
                 PROMPT = """
+                <s>
+                [INST]
+                <<SYS>>
                 As an excellent automatic term extraction (ATE) system, extract the terms in the Heart Failure domain given the following text delimited by triple backquotes. Named entities are not considered as terms.
-                Examples of the output format: 
-                Sentence: 'Treatment of anemia in patients with heart disease : a clinical practice guideline from the American College of Physicians .'
-                Domain: Heart failure
-                Output: 'Treatment of @@anemia## in @@patients## with @@heart disease## : a @@clinical practice guideline## from the American College of @@Physicians## .'
-                Sentence: 'Recommendation 2 : ACP recommends against the use of erythropoiesis-stimulating agents in patients with mild to moderate anemia and congestive heart failure or coronary heart disease .'
-                Domain: Heart failure
-                Output: 'Recommendation 2 : ACP recommends against the use of @@erythropoiesis-stimulating agents## in @@patients## with mild to moderate @@anemia## and @@congestive heart failure## or @@coronary heart disease## .'
-                Sentence: 'Moreover , there is yet to be established a common consensus being used in current assays .'
-                Domain: Heart failure
-                Output: 'Moreover , there is yet to be established a common consensus being used in current assays .'
 
+                Examples of the output format:
+                <</SYS>>
+                Sentence: ```Treatment of anemia in patients with heart disease : a clinical practice guideline from the American College of Physicians .```
+                Domain: Heart failure
+                [/INST]
+                Output: 'Treatment of @@anemia## in @@patients## with @@heart disease## : a @@clinical practice guideline## from the American College of @@Physicians## .'
+                </s>
+                
+                <s>
+                [INST]
+                Sentence: ```Recommendation 2 : ACP recommends against the use of erythropoiesis-stimulating agents in patients with mild to moderate anemia and congestive heart failure or coronary heart disease .```
+                Domain: Heart failure
+                [/INST]
+                Output: 'Recommendation 2 : ACP recommends against the use of @@erythropoiesis-stimulating agents## in @@patients## with mild to moderate @@anemia## and @@congestive heart failure## or @@coronary heart disease## .'
+                </s>
+                
+                <s>
+                [INST]
+                Sentence: ```Moreover , there is yet to be established a common consensus being used in current assays .```
+                Domain: Heart failure
+                [/INST]
+                Output: 'Moreover , there is yet to be established a common consensus being used in current assays .'
+                </s>
+                
+                <s>
+                [INST]
                 Sentence: ```{text}```
                 Domain: Heart failure
-                Output:
+                [/INST]
                 """
             else:
                 raise Exception("Format not supported")
         elif ver == 'nes':
             if format == 1:
                 PROMPT = """
+                <s>
+                [INST]
+                <<SYS>>
                 As an excellent automatic term extraction (ATE) system, extract the terms in the Heart Failure domain given the following text delimited by triple backquotes. Both terms and named entities are considered as terms.
                 Output Format: IOB labeling for each word and punctuation where B stands for the beginning word in the term, I stands for the word inside the term, and O stands for the word not part of the term.
-                
-                Examples of the output format: 
-                Sentence: 'Treatment of anemia in patients with heart disease : a clinical practice guideline from the American College of Physicians .'
-                Domain: Heart failure
-                Output: 'O O B O B O B I O O B I I O O B I I I O'
-                Sentence: 'Recommendation 2 : ACP recommends against the use of erythropoiesis-stimulating agents in patients with mild to moderate anemia and congestive heart failure or coronary heart disease .'
-                Domain: Heart failure
-                Output: 'O O O B O O O O O B I O B O O O O B O B I I O B I I O'
-                Sentence: 'Moreover , there is yet to be established a common consensus being used in current assays .'
-                Domain: Heart failure
-                Output: 'O O O O O O O O O O O O O O O O O'
 
+                Examples of the output format:
+                <</SYS>>
+                Sentence: ```Treatment of anemia in patients with heart disease : a clinical practice guideline from the American College of Physicians .```
+                Domain: Heart failure
+                [/INST]
+                Output: 'O O B O B O B I O O B I I O O B I I I O'
+                </s>
+                
+                <s>
+                [INST]
+                Sentence: ```Recommendation 2 : ACP recommends against the use of erythropoiesis-stimulating agents in patients with mild to moderate anemia and congestive heart failure or coronary heart disease .```
+                Domain: Heart failure
+                [/INST]
+                Output: 'O O O B O O O O O B I O B O O O O B O B I I O B I I O'
+                </s>
+                
+                <s>
+                [INST]
+                Sentence: ```Moreover , there is yet to be established a common consensus being used in current assays .```
+                Domain: Heart failure
+                [/INST]
+                Output: 'O O O O O O O O O O O O O O O O O'
+                </s>
+                
+                <s>
+                [INST]
                 Sentence: ```{text}```
                 Domain: Heart failure
-                Output:
+                [/INST]
                 """
             elif format == 2:
                 PROMPT = """
+                <s>
+                [INST]
+                <<SYS>>
                 As an excellent automatic term extraction (ATE) system, extract the terms in the Heart Failure domain given the following text delimited by triple backquotes. Both terms and named entities are considered as terms.
                 Output Format: [list of terms present]
                 If no terms are presented, keep it empty list: []
-                
-                Examples of the output format:
-                Sentence: 'Treatment of anemia in patients with heart disease : a clinical practice guideline from the American College of Physicians .'
-                Domain: Heart failure
-                Output: ['anemia', 'patients', 'heart disease', 'clinical practice guideline', 'American College of Physicians']
-                Sentence: 'Recommendation 2 : ACP recommends against the use of erythropoiesis-stimulating agents in patients with mild to moderate anemia and congestive heart failure or coronary heart disease .'
-                Domain: Heart failure
-                Output: ['ACP', 'erythropoiesis-stimulating agents', 'patients', 'anemia', 'congestive heart failure', 'coronary heart disease']
-                Sentence: 'Moreover , there is yet to be established a common consensus being used in current assays .'
-                Domain: Heart failure
-                Output: []
 
+                Examples of the output format:
+                <</SYS>>
+                Sentence: ```Treatment of anemia in patients with heart disease : a clinical practice guideline from the American College of Physicians .```
+                Domain: Heart failure
+                [/INST]
+                Output: ['anemia', 'patients', 'heart disease', 'clinical practice guideline', 'American College of Physicians']
+                </s>
+                
+                <s>
+                [INST]
+                Sentence: ```Recommendation 2 : ACP recommends against the use of erythropoiesis-stimulating agents in patients with mild to moderate anemia and congestive heart failure or coronary heart disease .```
+                Domain: Heart failure
+                [/INST]
+                Output: ['ACP', 'erythropoiesis-stimulating agents', 'patients', 'anemia', 'congestive heart failure', 'coronary heart disease']
+                </s>
+                
+                <s>
+                [INST]
+                Sentence: ```Moreover , there is yet to be established a common consensus being used in current assays .```
+                Domain: Heart failure
+                [/INST]
+                Output: []
+                </s>
+                
+                <s>
+                [INST]
                 Sentence: ```{text}```
                 Domain: Heart failure
-                Output: 
+                [/INST]
                 """
+
             elif format == 3:
                 PROMPT = """
+                <s>
+                [INST]
+                <<SYS>>
                 As an excellent automatic term extraction (ATE) system, extract the terms in the Heart Failure domain given the following text delimited by triple backquotes. Both terms and named entities are considered as terms.
-                Examples of the output format: 
-                Sentence: 'Treatment of anemia in patients with heart disease : a clinical practice guideline from the American College of Physicians .'
-                Domain: Heart failure
-                Output: 'Treatment of @@anemia## in @@patients## with @@heart disease## : a @@clinical practice guideline## from the @@American College of Physicians## .'
-                Sentence: 'Recommendation 2 : ACP recommends against the use of erythropoiesis-stimulating agents in patients with mild to moderate anemia and congestive heart failure or coronary heart disease .'
-                Domain: Heart failure
-                Output: 'Recommendation 2 : @@ACP## recommends against the use of @@erythropoiesis-stimulating agents## in @@patients## with mild to moderate @@anemia## and @@congestive heart failure## or @@coronary heart disease## .'
-                Sentence: 'Moreover , there is yet to be established a common consensus being used in current assays .'
-                Domain: Heart failure
-                Output: 'Moreover , there is yet to be established a common consensus being used in current assays .'
 
+                Examples of the output format:
+                <</SYS>>
+                Sentence: ```'Treatment of anemia in patients with heart disease : a clinical practice guideline from the American College of Physicians .```
+                Domain: Heart failure
+                [/INST]
+                Output: 'Treatment of @@anemia## in @@patients## with @@heart disease## : a @@clinical practice guideline## from the @@American College of Physicians## .'
+                </s>
+                
+                <s>
+                [INST]
+                Sentence: ```Recommendation 2 : ACP recommends against the use of erythropoiesis-stimulating agents in patients with mild to moderate anemia and congestive heart failure or coronary heart disease .```
+                Domain: Heart failure
+                [/INST]
+                Output: 'Recommendation 2 : @@ACP## recommends against the use of @@erythropoiesis-stimulating agents## in @@patients## with mild to moderate @@anemia## and @@congestive heart failure## or @@coronary heart disease## .'
+                </s>
+                
+                <s>
+                [INST]
+                Sentence: ```Moreover , there is yet to be established a common consensus being used in current assays .```
+                Domain: Heart failure
+                [/INST]
+                Output: 'Moreover , there is yet to be established a common consensus being used in current assays .'
+                </s>
+                
+                <s>
+                [INST]
                 Sentence: ```{text}```
                 Domain: Heart failure
-                Output:
+                [/INST]
                 """
             else:
                 raise Exception("Format not supported")
@@ -149,123 +260,234 @@ def prompt_design(lang, ver, format):
         if ver == 'ann':
             if format == 1:
                 PROMPT = """
+                <s>
+                [INST]
+                <<SYS>>
                 As an excellent automatic term extraction (ATE) system, extract the terms in the Heart Failure domain given the following text delimited by triple backquotes. Named entities are not considered as terms.
                 Output Format: IOB labeling for each word and punctuation where B stands for the beginning word in the term, I stands for the word inside the term, and O stands for the word not part of the term.
-                
-                Examples of the output format: 
-                Sentence: 'Prévalence et prise en charge de l' insuffisance cardiaque en France : enquête nationale auprès des médecins généralistes du réseau Sentinelles .'
-                Domain: Heart failure
-                Output: 'B O B I I O O B I O O O O O O O B I O O O O'
-                Sentence: 'Recommandations de la Conférence consensuelle de la Société canadienne de cardiologie 2006 sur l' insuffisance cardiaque : Diagnostic et prise en charge .'
-                Domain: Heart failure
-                Output: 'O O O O O O O O O O B O O O B I O B O B I I O'
-                Sentence: 'La durée moyenne de séjour est de 11 jours .'
-                Domain: Heart failure
-                Output: 'O O O O O O O O O O'
 
+                Examples of the output format:
+                <</SYS>>
+                Sentence: ```Prévalence et prise en charge de l' insuffisance cardiaque en France : enquête nationale auprès des médecins généralistes du réseau Sentinelles .```
+                Domain: Heart failure
+                [/INST]
+                Output: 'B O B I I O O B I O O O O O O O B I O O O O'
+                </s>
+                
+                <s>
+                [INST]
+                Sentence: ```Recommandations de la Conférence consensuelle de la Société canadienne de cardiologie 2006 sur l' insuffisance cardiaque : Diagnostic et prise en charge .```
+                Domain: Heart failure
+                [/INST]
+                Output: 'O O O O O O O O O O B O O O B I O B O B I I O'
+                </s>
+                
+                <s>
+                [INST]
+                Sentence: ```La durée moyenne de séjour est de 11 jours .```
+                Domain: Heart failure
+                [/INST]
+                Output: 'O O O O O O O O O O'
+                </s>
+                
+                <s>
+                [INST]
                 Sentence: ```{text}```
                 Domain: Heart failure
-                Output:
+                [/INST]
                 """
             elif format == 2:
                 PROMPT = """
+                <s>
+                [INST]
+                <<SYS>>
                 As an excellent automatic term extraction (ATE) system, extract the terms in the Heart Failure domain given the following text delimited by triple backquotes. Named entities are not considered as terms.
                 Output Format: [list of terms present]
                 If no terms are presented, keep it empty list: []
-                
-                Examples of the output format:  
-                Sentence: 'Prévalence et prise en charge de l' insuffisance cardiaque en France : enquête nationale auprès des médecins généralistes du réseau Sentinelles .'
-                Domain: Heart failure
-                Output: ['Prévalence', 'prise en charge', 'insuffisance cardiaque', 'médecins généralistes']
-                Sentence: 'Recommandations de la Conférence consensuelle de la Société canadienne de cardiologie 2006 sur l' insuffisance cardiaque : Diagnostic et prise en charge .'
-                Domain: Heart failure
-                Output: ['cardiologie', 'insuffisance cardiaque', 'Diagnostic', 'prise en charge']
-                Sentence: 'La durée moyenne de séjour est de 11 jours .'
-                Domain: Heart failure
-                Output: []
 
+                Examples of the output format:
+                <</SYS>>
+                Sentence: ```Prévalence et prise en charge de l' insuffisance cardiaque en France : enquête nationale auprès des médecins généralistes du réseau Sentinelles .```
+                Domain: Heart failure
+                [/INST]
+                Output: ['Prévalence', 'prise en charge', 'insuffisance cardiaque', 'médecins généralistes']
+                </s>
+                
+                <s>
+                [INST]
+                Sentence: ```Recommandations de la Conférence consensuelle de la Société canadienne de cardiologie 2006 sur l' insuffisance cardiaque : Diagnostic et prise en charge .```
+                Domain: Heart failure
+                [/INST]
+                Output: ['cardiologie', 'insuffisance cardiaque', 'Diagnostic', 'prise en charge']
+                </s>
+                
+                <s>
+                [INST]
+                Sentence: ```La durée moyenne de séjour est de 11 jours .```
+                Domain: Heart failure
+                [/INST]
+                Output: []
+                </s>
+                
+                <s>
+                [INST]
                 Sentence: ```{text}```
                 Domain: Heart failure
-                Output: """
+                [/INST]
+                """
             elif format == 3:
                 PROMPT = """
+                <s>
+                [INST]
+                <<SYS>>
                 As an excellent automatic term extraction (ATE) system, extract the terms in the Heart Failure domain given the following text delimited by triple backquotes. Named entities are not considered as terms.
-                Examples of the output format: 
-                Sentence: 'Prévalence et prise en charge de l' insuffisance cardiaque en France : enquête nationale auprès des médecins généralistes du réseau Sentinelles .'
-                Domain: Heart failure
-                Output: '@@Prévalence## et @@prise en charge## de l' @@insuffisance cardiaque## en France : enquête nationale auprès des @@médecins généralistes## du réseau Sentinelles .'
-                Sentence: 'Recommandations de la Conférence consensuelle de la Société canadienne de cardiologie 2006 sur l' insuffisance cardiaque : Diagnostic et prise en charge .'
-                Domain: Heart failure
-                Output: 'Recommandations de la Conférence consensuelle de la Société canadienne de @@cardiologie## 2006 sur l' @@insuffisance cardiaque## : @@Diagnostic## et @@prise en charge## .'
-                Sentence: 'La durée moyenne de séjour est de 11 jours .'
-                Domain: Heart failure
-                Output: 'La durée moyenne de séjour est de 11 jours .'
 
+                Examples of the output format:
+                <</SYS>>
+                Sentence: ```Prévalence et prise en charge de l' insuffisance cardiaque en France : enquête nationale auprès des médecins généralistes du réseau Sentinelles .```
+                Domain: Heart failure
+                [/INST]
+                Output: "@@Prévalence## et @@prise en charge## de l' @@insuffisance cardiaque## en France : enquête nationale auprès des @@médecins généralistes## du réseau Sentinelles ."
+                </s>
+                
+                <s>
+                [INST]
+                Sentence: ```Recommandations de la Conférence consensuelle de la Société canadienne de cardiologie 2006 sur l' insuffisance cardiaque : Diagnostic et prise en charge .```
+                Domain: Heart failure
+                [/INST]
+                Output: "Recommandations de la Conférence consensuelle de la Société canadienne de @@cardiologie## 2006 sur l' @@insuffisance cardiaque## : @@Diagnostic## et @@prise en charge## ."
+                </s>
+                
+                <s>
+                [INST]
+                Sentence: ```La durée moyenne de séjour est de 11 jours .```
+                Domain: Heart failure
+                [/INST]
+                Output: "La durée moyenne de séjour est de 11 jours ."
+                </s>
+                
+                <s>
+                [INST]
                 Sentence: ```{text}```
                 Domain: Heart failure
-                Output:
+                [/INST]
                 """
             else:
                 raise Exception("Format not supported")
         elif ver == 'nes':
             if format == 1:
                 PROMPT = """
+                <s>
+                [INST]
+                <<SYS>>
                 As an excellent automatic term extraction (ATE) system, extract the terms in the Heart Failure domain given the following text delimited by triple backquotes. Both terms and named entities are considered as terms.
                 Output Format: IOB labeling for each word and punctuation where B stands for the beginning word in the term, I stands for the word inside the term, and O stands for the word not part of the term.
-                
-                Examples of the output format: 
-                Sentence: 'Prévalence et prise en charge de l' insuffisance cardiaque en France : enquête nationale auprès des médecins généralistes du réseau Sentinelles .'
-                Domain: Heart failure
-                Output: 'B O B I I O O B I O B O O O O O B I O B I O'
-                Sentence: 'Recommandations de la Conférence consensuelle de la Société canadienne de cardiologie 2006 sur l' insuffisance cardiaque : Diagnostic et prise en charge .'
-                Domain: Heart failure
-                Output: 'O O O O O O O O O O B O O O B I O B O B I I O'
-                Sentence: 'La durée moyenne de séjour est de 11 jours .'
-                Domain: Heart failure
-                Output: 'O O O O O O O O O O'
 
+                Examples of the output format:
+                <</SYS>>
+                Sentence: ```Prévalence et prise en charge de l' insuffisance cardiaque en France : enquête nationale auprès des médecins généralistes du réseau Sentinelles .```
+                Domain: Heart failure
+                [/INST]
+                Output: 'B O B I I O O B I O B O O O O O B I O B I O'
+                </s>
+                
+                <s>
+                [INST]
+                Sentence: ```Recommandations de la Conférence consensuelle de la Société canadienne de cardiologie 2006 sur l' insuffisance cardiaque : Diagnostic et prise en charge .```
+                Domain: Heart failure
+                [/INST]
+                Output: 'O O O O O O O O O O B O O O B I O B O B I I O'
+                </s>
+                
+                <s>
+                [INST]
+                Sentence: ```La durée moyenne de séjour est de 11 jours .```
+                Domain: Heart failure
+                [/INST]
+                Output: 'O O O O O O O O O O'
+                </s>
+                
+                <s>
+                [INST]
                 Sentence: ```{text}```
                 Domain: Heart failure
-                Output:
+                [/INST]
                 """
             elif format == 2:
                 PROMPT = """
+                <s>
+                [INST]
+                <<SYS>>
                 As an excellent automatic term extraction (ATE) system, extract the terms in the Heart Failure domain given the following text delimited by triple backquotes. Both terms and named entities are considered as terms.
                 Output Format: [list of terms present]
                 If no terms are presented, keep it empty list: []
                 
-                Examples of the output format:  
-                Sentence: 'Prévalence et prise en charge de l' insuffisance cardiaque en France : enquête nationale auprès des médecins généralistes du réseau Sentinelles .'
+                Examples of the output format:
+                <</SYS>>
+                Sentence: ```Prévalence et prise en charge de l' insuffisance cardiaque en France : enquête nationale auprès des médecins généralistes du réseau Sentinelles .```
                 Domain: Heart failure
-                Output: ['Prévalence', 'prise en charge', 'insuffisance cardiaque', 'France', 'médecins généralistes', 'réseau Sentinelles']
-                Sentence: 'Recommandations de la Conférence consensuelle de la Société canadienne de cardiologie 2006 sur l' insuffisance cardiaque : Diagnostic et prise en charge .'
+                [/INST]
+                Output: ['Prévalence', 'prise en charge', 'insuffisance cardiaque', 'France', 'médecins généralistes', 'réseau Sentinelles']\
+                </s>
+                
+                <s>
+                [INST]
+                Sentence: ```Recommandations de la Conférence consensuelle de la Société canadienne de cardiologie 2006 sur l' insuffisance cardiaque : Diagnostic et prise en charge .```
                 Domain: Heart failure
+                [/INST]
                 Output: ['Conférence consensuelle de la Société canadienne de cardiologie', 'insuffisance cardiaque', 'Diagnostic', 'prise en charge']
-                Sentence: 'La durée moyenne de séjour est de 11 jours .'
+                </s>
+                
+                <s>
+                [INST]
+                Sentence: ```La durée moyenne de séjour est de 11 jours .```
                 Domain: Heart failure
+                [/INST]
                 Output: []
-
+                </s>
+                
+                <s>
+                [INST]
                 Sentence: ```{text}```
                 Domain: Heart failure
-                Output: 
+                [/INST]
                 """
             elif format == 3:
                 PROMPT = """
+                <s>
+                [INST]
+                <<SYS>>
                 As an excellent automatic term extraction (ATE) system, extract the terms in the Heart Failure domain given the following text delimited by triple backquotes. Both terms and named entities are considered as terms.
-                Examples of the output format: 
-                Sentence: 'Prévalence et prise en charge de l' insuffisance cardiaque en France : enquête nationale auprès des médecins généralistes du réseau Sentinelles .'
-                Domain: Heart failure
-                Output: '@@Prévalence## et @@prise en charge## de l' @@insuffisance cardiaque## en @@France## : enquête nationale auprès des @@médecins généralistes## du @@réseau Sentinelles## .'
-                Sentence: 'Recommandations de la Conférence consensuelle de la Société canadienne de cardiologie 2006 sur l' insuffisance cardiaque : Diagnostic et prise en charge .'
-                Domain: Heart failure
-                Output: 'Recommandations de la @@Conférence consensuelle de la Société canadienne de cardiologie## 2006 sur l' @@insuffisance cardiaque## : @@Diagnostic## et @@prise en charge## .'
-                Sentence: 'La durée moyenne de séjour est de 11 jours .'
-                Domain: Heart failure
-                Output: 'La durée moyenne de séjour est de 11 jours .'
 
+                Examples of the output format:
+                <</SYS>>
+                Sentence: ```Prévalence et prise en charge de l' insuffisance cardiaque en France : enquête nationale auprès des médecins généralistes du réseau Sentinelles .```
+                Domain: Heart failure
+                [/INST]
+                Output: "@@Prévalence## et @@prise en charge## de l' @@insuffisance cardiaque## en @@France## : enquête nationale auprès des @@médecins généralistes## du @@réseau Sentinelles## ."
+                </s>
+                
+                <s>
+                [INST]
+                Sentence: ```Recommandations de la Conférence consensuelle de la Société canadienne de cardiologie 2006 sur l' insuffisance cardiaque : Diagnostic et prise en charge .```
+                Domain: Heart failure
+                [/INST]
+                Output: "Recommandations de la @@Conférence consensuelle de la Société canadienne de cardiologie## 2006 sur l' @@insuffisance cardiaque## : @@Diagnostic## et @@prise en charge## ."
+                </s>
+                
+                <s>
+                [INST]
+                Sentence: ```La durée moyenne de séjour est de 11 jours .```
+                Domain: Heart failure
+                [/INST]
+                Output: "La durée moyenne de séjour est de 11 jours ."
+                </s>
+                
+                <s>
+                [INST]
                 Sentence: ```{text}```
                 Domain: Heart failure
-                Output:
+                [/INST]
                 """
             else:
                 raise Exception("Format not supported")
@@ -276,49 +498,146 @@ def prompt_design(lang, ver, format):
         if ver == 'ann':
             if format == 1:
                 PROMPT = """
+                <s>
+                [INST]
+                <<SYS>>
                 As an excellent automatic term extraction (ATE) system, extract the terms in the Heart Failure domain given the following text delimited by triple backquotes. Named entities are not considered as terms.
                 Output Format: IOB labeling for each word and punctuation where B stands for the beginning word in the term, I stands for the word inside the term, and O stands for the word not part of the term.
-                
-                Examples of the output format: 
-                Sentence: 'De bevindingen kunnen een grote rol spelen bij de herziening van de standaard Hartfalen van het Nederlands Huisartsen Genootschap .'
-                Domain: Heart failure
-                Output: 'O O O O O O O O O O O O O B O O O B O O'
-                Sentence: 'Methode De reviewers zochten tot 2004 in MEDLINE , EMBASE , HERDIN en de Cochrane Library naar RCT's bij patiënten met chronisch hartfalen waarbij ( lis- of thiazide ) diuretica werden vergeleken met placebo of andere medicatie .'
-                Domain: Heart failure
-                Output: 'O O O O O O O O O O O O O O O O O B O B O B I O O B O B O B O O O B O O B O'
-                Sentence: 'Na 1 nacht vasten werden lichaamsgewicht en vitale tekenen genoteerd .'
-                Domain: Heart failure
-                Output: 'O O O O O O O O O O O'
 
-                Sentence: ```{text}```
+                Examples of the output format:
+                <</SYS>>
+                Sentence: ```De bevindingen kunnen een grote rol spelen bij de herziening van de standaard Hartfalen van het Nederlands Huisartsen Genootschap .```
                 Domain: Heart failure
-                Output:
+                [/INST]
+                Output: 'O O O O O O O O O O O O O B O O O B O O'
+                </s>
+                
+                <s>
+                [INST]
+                Sentence: ```Methode De reviewers zochten tot 2004 in MEDLINE , EMBASE , HERDIN en de Cochrane Library naar RCT's bij patiënten met chronisch hartfalen waarbij ( lis- of thiazide ) diuretica werden vergeleken met placebo of andere medicatie .```
+                Domain: Heart failure
+                [/INST]
+                Output: 'O O O O O O O O O O O O O O O O O B O B O B I O O B O B O B O O O B O O B O'
+                </s>
+                
+                <s>
+                [INST]
+                Sentence: ```Na 1 nacht vasten werden lichaamsgewicht en vitale tekenen genoteerd .```
+                Domain: Heart failure
+                [/INST]
+                Output: 'O O O O O O O O O O O'
+                </s>
                 """
             elif format == 2:
-                PROMPT = ""
+                PROMPT = """
+                <s>
+                [INST]
+                <<SYS>>
+                As an excellent automatic term extraction (ATE) system, extract the terms in the Heart Failure domain given the following text delimited by triple backquotes. Named entities are not considered as terms.
+                Output Format: [list of terms present]
+                If no terms are presented, keep it empty list: []
+
+                Examples of the output format:
+                <</SYS>>
+                Sentence: ```De bevindingen kunnen een grote rol spelen bij de herziening van de standaard Hartfalen van het Nederlands Huisartsen Genootschap .```
+                Domain: Heart failure
+                [/INST]
+                Output: ['Hartfalen', 'Huisartsen']
+                </s>
+                
+                <s>
+                [INST]
+                Sentence: ```Methode De reviewers zochten tot 2004 in MEDLINE , EMBASE , HERDIN en de Cochrane Library naar RCT's bij patiënten met chronisch hartfalen waarbij ( lis- of thiazide ) diuretica werden vergeleken met placebo of andere medicatie .```
+                Domain: Heart failure
+                [/INST]
+                Output: ["RCT's", "patiënten", "chronisch hartfalen", "lis-", "thiazide", "diuretica", "placebo", "medicatie"]
+                </s>
+                
+                <s>
+                [INST]
+                Sentence: ```Na 1 nacht vasten werden lichaamsgewicht en vitale tekenen genoteerd .```
+                Domain: Heart failure
+                [/INST]
+                Output: []
+                </s>
+                """
             elif format == 3:
                 PROMPT = """
+                <s>
+                [INST]
+                <<SYS>>
                 As an excellent automatic term extraction (ATE) system, extract the terms in the Heart Failure domain given the following text delimited by triple backquotes. Named entities are not considered as terms.
-                Examples of the output format: 
-                Sentence: 'De bevindingen kunnen een grote rol spelen bij de herziening van de standaard Hartfalen van het Nederlands Huisartsen Genootschap .'
+                
+                Examples of the output format:
+                <</SYS>>
+                Sentence: ```De bevindingen kunnen een grote rol spelen bij de herziening van de standaard Hartfalen van het Nederlands Huisartsen Genootschap .```
                 Domain: Heart failure
-                Output: 'De bevindingen kunnen een grote rol spelen bij de herziening van de standaard @@Hartfalen## van het Nederlands @@Huisartsen## Genootschap .'
-                Sentence: 'Methode De reviewers zochten tot 2004 in MEDLINE , EMBASE , HERDIN en de Cochrane Library naar RCT's bij patiënten met chronisch hartfalen waarbij ( lis- of thiazide ) diuretica werden vergeleken met placebo of andere medicatie .'
+                [/INST]
+                Output: "De bevindingen kunnen een grote rol spelen bij de herziening van de standaard @@Hartfalen## van het Nederlands @@Huisartsen## Genootschap ."
+                </s>
+                
+                <s>
+                [INST]
+                Sentence: ```Methode De reviewers zochten tot 2004 in MEDLINE , EMBASE , HERDIN en de Cochrane Library naar RCT's bij patiënten met chronisch hartfalen waarbij ( lis- of thiazide ) diuretica werden vergeleken met placebo of andere medicatie .```
                 Domain: Heart failure
-                Output: 'Methode De reviewers zochten tot 2004 in MEDLINE , EMBASE , HERDIN en de Cochrane Library naar @@RCT's## bij @@patiënten## met @@chronisch hartfalen## waarbij ( @@lis-## of @@thiazide## ) @@diuretica## werden vergeleken met @@placebo## of andere @@medicatie## .'
-                Sentence: 'Na 1 nacht vasten werden lichaamsgewicht en vitale tekenen genoteerd .'
+                [/INST]
+                Output: "Methode De reviewers zochten tot 2004 in MEDLINE , EMBASE , HERDIN en de Cochrane Library naar @@RCT's## bij @@patiënten## met @@chronisch hartfalen## waarbij ( @@lis-## of @@thiazide## ) @@diuretica## werden vergeleken met @@placebo## of andere @@medicatie## ."
+                </s>
+                
+                <s>
+                [INST]
+                Sentence: ```Na 1 nacht vasten werden lichaamsgewicht en vitale tekenen genoteerd .```
                 Domain: Heart failure
-                Output: 'Na 1 nacht vasten werden lichaamsgewicht en vitale tekenen genoteerd .'
-
+                [/INST]
+                Output: "Na 1 nacht vasten werden lichaamsgewicht en vitale tekenen genoteerd ."
+                </s>
+                
+                <s>
+                [INST]
                 Sentence: ```{text}```
                 Domain: Heart failure
-                Output:
+                [/INST]
                 """
             else:
                 raise Exception("Format not supported")
         elif ver == 'nes':
             if format == 1:
                 PROMPT = """
+                <s>
+                [INST]
+                <<SYS>>
+                As an excellent automatic term extraction (ATE) system, extract the terms in the Heart Failure domain given the following text delimited by triple backquotes. Both terms and named entities are considered as terms.
+                Output Format: IOB labeling for each word and punctuation where B stands for the beginning word in the term, I stands for the word inside the term, and O stands for the word not part of the term.
+                
+                Examples of the output format:
+                <</SYS>>
+                Sentence: ```De bevindingen kunnen een grote rol spelen bij de herziening van de standaard Hartfalen van het Nederlands Huisartsen Genootschap .```
+                Domain: Heart failure
+                [/INST]
+                Output: 'De bevindingen kunnen een grote rol spelen bij de herziening van de standaard @@Hartfalen## van het @@Nederlands Huisartsen Genootschap## .'
+                </s>
+                
+                <s>
+                [INST]
+                Sentence: ```Methode De reviewers zochten tot 2004 in MEDLINE , EMBASE , HERDIN en de Cochrane Library naar RCT's bij patiënten met chronisch hartfalen waarbij ( lis- of thiazide ) diuretica werden vergeleken met placebo of andere medicatie .```
+                Domain: Heart failure
+                [/INST]
+                Output: 'Methode De reviewers zochten tot 2004 in @@MEDLINE## , @@EMBASE## , @@HERDIN## en de @@Cochrane Library## naar @@RCT's## bij @@patiënten## met @@chronisch hartfalen## waarbij ( @@lis-## of @@thiazide## ) @@diuretica## werden vergeleken met @@placebo## of andere @@medicatie## .'
+                </s>
+                
+                <s>
+                [INST]
+                Sentence: ```Na 1 nacht vasten werden lichaamsgewicht en vitale tekenen genoteerd .```
+                Domain: Heart failure
+                [/INST]
+                Output: 'Na 1 nacht vasten werden lichaamsgewicht en vitale tekenen genoteerd .'
+                </s>
+                
+                <s>
+                [INST]
+                Sentence: ```{text}```
+                Domain: Heart failure
+                [/INST]
                 As an excellent automatic term extraction (ATE) system, extract the terms in the Heart Failure domain given the following text delimited by triple backquotes. Both terms and named entities are considered as terms.
                 Output Format: IOB labeling for each word and punctuation where B stands for the beginning word in the term, I stands for the word inside the term, and O stands for the word not part of the term.
                 
@@ -338,10 +657,48 @@ def prompt_design(lang, ver, format):
                 Output:
                 """
             elif format == 2:
-                PROMPT = ""
+                PROMPT = """
+                <s>
+                [INST]
+                <<SYS>>
+                As an excellent automatic term extraction (ATE) system, extract the terms in the Heart Failure domain given the following text delimited by triple backquotes. Both terms and named entities are considered as terms.
+                Output Format: [list of terms present]
+                If no terms are presented, keep it empty list: []
+
+                Examples of the output format:
+                <</SYS>>
+                Sentence: ```De bevindingen kunnen een grote rol spelen bij de herziening van de standaard Hartfalen van het Nederlands Huisartsen Genootschap .```
+                Domain: Heart failure
+                [/INST]
+                Output: ['Hartfalen', 'Nederlands Huisartsen Genootschap']
+                </s>
+                
+                <s>
+                [INST]
+                Sentence: ```Methode De reviewers zochten tot 2004 in MEDLINE , EMBASE , HERDIN en de Cochrane Library naar RCT's bij patiënten met chronisch hartfalen waarbij ( lis- of thiazide ) diuretica werden vergeleken met placebo of andere medicatie .```
+                Domain: Heart failure
+                [/INST]
+                Output: ['MEDLINE', 'EMBASE', 'HERDIN', 'Cochrane Library', "RCT's","patiënten", "hronisch hartfalen", "lis-", "thiazide", "diuretica", "placebo", "medicatie"]
+                </s>
+                
+                <s>
+                [INST]
+                Sentence: ```Na 1 nacht vasten werden lichaamsgewicht en vitale tekenen genoteerd .```
+                Domain: Heart failure
+                [/INST]
+                Output: []
+                </s>
+                
+                <s>
+                [INST]
+                Sentence: ```{text}```
+                Domain: Heart failure
+                [/INST]
+                """
             elif format == 3:
                 PROMPT = """
                 As an excellent automatic term extraction (ATE) system, extract the terms in the Heart Failure domain given the following text delimited by triple backquotes. Both terms and named entities are considered as terms.
+
                 Examples of the output format: 
                 Sentence: 'De bevindingen kunnen een grote rol spelen bij de herziening van de standaard Hartfalen van het Nederlands Huisartsen Genootschap .'
                 Domain: Heart failure
