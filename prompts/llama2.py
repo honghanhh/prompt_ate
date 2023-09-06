@@ -772,7 +772,7 @@ if __name__ == '__main__':
     count = 0
     htfl['llama_output'+ str(args.formats) + args.ver] = pd.Series()
     for i in range(len(htfl)):
-        htfl['llama_output3_ann'].iloc[i] = llm_chain.run(htfl['text'].iloc[i])
+        htfl['llama_output'+ str(args.formats) +'_ann'].iloc[i] = llm_chain.run(htfl['text'].iloc[i])
         if count % 50 == 0:
             print(str(count) + '/' + str(len(htfl)))
             print(htfl['text'].iloc[i])
