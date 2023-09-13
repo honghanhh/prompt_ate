@@ -7,6 +7,7 @@ from langchain import PromptTemplate,  LLMChain
 import argparse
 import pandas as pd
 import numpy as np
+from tqdm import tqdm
 
 import warnings
 warnings.filterwarnings("ignore")
@@ -734,6 +735,7 @@ if __name__ == '__main__':
     parser.add_argument("--ver", default="version", type=str, required=True)
     parser.add_argument("--formats", default="format", type=str, required=True)
     parser.add_argument("--output_path", default="output_path", type=str, required=True)
+    parser.add_argument("--model", default="model", type=str, required=True)
     args = parser.parse_args()
 
     if args.lang == 'en':
@@ -745,7 +747,7 @@ if __name__ == '__main__':
     else:
         raise Exception("Language not supported")
 
-    model = "meta-llama/Llama-2-7b-chat-hf"
+    model = args.model #"meta-llama/Llama-2-7b-chat-hf"
 
     tokenizer = AutoTokenizer.from_pretrained(model)
 
@@ -771,12 +773,13 @@ if __name__ == '__main__':
 
     count = 0
     htfl['llama_output'+ str(args.formats) + args.ver] = pd.Series()
-    for i in range(len(htfl)):
+
+    for i in tqdm(range(len(htfl))):
         htfl['llama_output'+ str(args.formats) +'_ann'].iloc[i] = llm_chain.run(htfl['text'].iloc[i])
-        if count % 50 == 0:
-            print(str(count) + '/' + str(len(htfl)))
-            print(htfl['text'].iloc[i])
-            print(htfl['llama_output'+ str(args.formats) + args.ver].iloc[i])
-        count +=1
+        # if count % 100 == 0:
+        #     print(str(count) + '/' + str(len(htfl)))
+        #     print(htfl['text'].iloc[i])
+        #     print(htfl['llama_output'+ str(args.formats) + args.ver].iloc[i])
+        # count +=1
     
     htfl.to_csv(args.output_path, index=False)
