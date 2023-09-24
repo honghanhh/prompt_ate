@@ -94,22 +94,12 @@ def extract_between_markers(input_string):
     extracted = re.findall(pattern, input_string)
     return extracted
 
-def eval_template3(df, col, gold_path):
-    output =  postprocess(df, col)
-    output = [extract_between_markers(x) for x in output] 
-    predictions = []
-    for x in output:
-        predictions.extend(x)
-
-    gold_list = pd.read_csv(gold_path, header=None, delimiter='\t')[0].tolist()
-    _, _, _, precision, recall, fscore = computeTermEvalMetrics(predictions, gold_list)
-
 
 if __name__ == '__main__':
 
     parser = argparse.ArgumentParser()
     parser.add_argument("--data_path", default="data_path", type=str, required=True)
-    parser.add_argument("--format", default="format", type=str, required=True)
+    parser.add_argument("--format", default="format", type=int, required=True)
     parser.add_argument("--lang", default="language", type=str, required=True)
     parser.add_argument("--ver", default="version", type=str, required=True)
     args = parser.parse_args()
@@ -118,203 +108,51 @@ if __name__ == '__main__':
     # print(df.head(2))
     gold_list = read_data(args.lang, args.ver)
 
-    if args.lang == 'en':
-        if args.ver == 'ann':
-            print("English ANN evaluation")
+    print(args.lang)
+    print(args.ver)
 
-            ##########################################
-            print("#"*50)
-            print("#1. Extracted IOB format")
-            precision, recall, fscore = eval_template1(df, args.format, gold_list)
+    if args.format == 1:
+        print("#"*50)
+        print("#1. Extracted IOB format")
+        precision, recall, fscore = eval_template1(df, args.format, gold_list)
 
-            ##########################################
-            print("#"*50)
-            print("#2. Extracted candidate term list")
-            en_ann_2 = []
+    elif args.format == 2:
+        print("#"*50)
+        print("#2. Extracted candidate term list")
+        candidate_terms = []
+        if args.lang == 'en' and args.ver == 'ann':
             for x in df[args.format]:
                 term = eval(str(x).split('Output: ')[1]) if len(str(x).split('Output: ')) > 1 else []
-                en_ann_2.extend(term)
-
-            _, _, _, precision, recall, fscore = computeTermEvalMetrics(en_ann_2, gold_list)
-
-            ##########################################
-            print("#"*50)
-            print("#3. Masking terms")
-            
-            en_ann_3 = []
-            for x in df[args.format]:
-                sent = str(x).split('Output: ')[1].split('[INST]')[0].strip() if len(str(x).split('Output: ')) > 1 else ""
-                en_ann_3.extend(extract_between_markers(sent))
-            en_ann_3_updated = []
-            for x in en_ann_3:
-                en_ann_3_updated.append(x.split('@@')[-1])
-
-            _, _, _, precision, recall, fscore = computeTermEvalMetrics(en_ann_3_updated, gold_list)
-
-        elif args.ver == 'nes':
-            print("English NES evaluation")
-
-            ##########################################
-            print("#"*50)
-            print("#1. Extracted IOB format")
-            precision, recall, fscore = eval_template1(df, args.format, gold_list)
-
-            ##########################################
-            print("#"*50)
-            print("#2. Extracted candidate term list")
-            en_nes_2 = []
+                candidate_terms.extend(term)
+        elif args.lang in ['en', 'fr', 'nl'] and args.ver in ['ann', 'nes']:
             for x in df[args.format]:
                 term = eval(str(x).split('Output: ')[1].split('[INST]')[0].strip()) if len(str(x).split('Output: ')) > 1 and len(str(x).split('Output: ')[1].split('[INST]')[0].strip()) > 1 else []
-                en_nes_2.extend(term)
+                candidate_terms.extend(term)
+        else:
+            raise Exception("Language not supported")
+        _, _, _, precision, recall, fscore = computeTermEvalMetrics(candidate_terms, gold_list)
+    elif args.format == 3:
+        ### RAW
+        candidate_terms = []
+        for x in df[args.format]:
+            sent = str(x).split('Output: ')[1].split('[INST]')[0].strip() if len(str(x).split('Output: ')) > 1 else ""
+            candidate_terms.extend(extract_between_markers(sent))
 
-            _, _, _, precision, recall, fscore = computeTermEvalMetrics(en_nes_2, gold_list)
+        ### PROCESSED
+        candidate_terms_list = []
+        for x in candidate_terms:
+            candidate_terms_list.append(x.split('@@')[-1])
 
-            ##########################################
-            print("#"*50)
-            print("#3. Masking terms")
-
-            en_nes_3 = []
-            for x in df[args.format]:
-                sent = str(x).split('Output: ')[1].split('[INST]')[0].strip() if len(str(x).split('Output: ')) > 1 else ""
-                en_nes_3.extend(extract_between_markers(sent))
-
-            en_nes_3_updated = []
-            for x in en_nes_3:
-                en_nes_3_updated.append(x.split('@@')[-1])
-    
-            _, _, _, precision, recall, fscore = computeTermEvalMetrics(en_nes_3_updated, gold_list)
-        else: 
-            raise Exception("Version not supported")
-    elif args.lang == 'fr':
-        
-        if args.ver == 'ann':
-            print("French ANN evaluation")
-
-            ##########################################
-            print("#"*50)
-            print("#1. Extracted IOB format")
-
-            precision, recall, fscore =  eval_template1(df, args.format, gold_list)
-
-            ##########################################
-            print("#"*50)
-            print("#2. Extracted candidate term list")
-            
-            fr_ann_2 = []
-            for x in df[args.format]:
-                term = eval(str(x).split('Output: ')[1].split('[INST]')[0].strip()) if len(str(x).split('Output: ')) > 1 and len(str(x).split('Output: ')[1].split('[INST]')[0].strip()) > 1 else []
-                fr_ann_2.extend(term)
-            _, _, _, precision, recall, fscore = computeTermEvalMetrics(fr_ann_2, gold_list)
-
-            ##########################################
-            print("#"*50)
-            print("#3. Masking terms")
-            fr_ann_3 = []
-            for x in df[args.format]:
-                sent = str(x).split('Output: ')[1].split('[INST]')[0].strip() if len(str(x).split('Output: ')) > 1 else ""
-                fr_ann_3.extend(extract_between_markers(sent))
+        _, _, _, precision, recall, fscore = computeTermEvalMetrics(candidate_terms, gold_list)
+        _, _, _, precision1, recall1, fscore1 = computeTermEvalMetrics(candidate_terms_list, gold_list)
                 
-            _, _, _, precision, recall, fscore = computeTermEvalMetrics(fr_ann_3, gold_list)
+        print("Precision: " + str(precision1))
+        print("Recall: " + str(recall1))
+        print("F-score: " + str(fscore1))
 
-        elif args.ver == 'nes':
-            print("French NES evaluation")
-
-            ##########################################
-            print("#"*50)
-            print("#1. Extracted IOB format")
-            precision, recall, fscore =  eval_template1(df, args.format, gold_list)
-
-            ##########################################
-            print("#"*50)
-            print("#2. Extracted candidate term list")
-            fr_nes_2 = []
-            for x in df[args.format]:
-                term = eval(str(x).split('Output: ')[1].split('[INST]')[0].strip()) if len(str(x).split('Output: ')) > 1 and len(str(x).split('Output: ')[1].split('[INST]')[0].strip()) > 1 else []
-                fr_nes_2.extend(term)
-                
-            _, _, _, precision, recall, fscore = computeTermEvalMetrics(fr_nes_2, gold_list)
-            
-
-            ##########################################
-            print("#"*50)
-            print("#3. Masking terms")
-            fr_nes_3 = []
-            for x in df[args.format]:
-                sent = str(x).split('Output: ')[1].split('[INST]')[0].strip() if len(str(x).split('Output: ')) > 1 else ""
-                fr_nes_3.extend(extract_between_markers(sent))
-
-            _, _, _, precision, recall, fscore = computeTermEvalMetrics(fr_nes_3, gold_list)
-
-        else: 
-            raise Exception("Version not supported")
-    elif args.lang == 'nl':
-        
-        if args.ver == 'ann':
-            print("Dutch ANN evaluation")
-            ##########################################
-            print("#"*50)
-            print("#1. Extracted IOB format")
-            precision, recall, fscore =  eval_template1(df, args.format, gold_list)
-
-            ##########################################
-            print("#"*50)
-            print("#2. Extracted candidate term list")
-            nl_ann_2 = []
-            for x in df[args.format]:
-                term = eval(str(x).split('Output: ')[1].split('[INST]')[0].strip()) if len(str(x).split('Output: ')) > 1 and len(str(x).split('Output: ')[1].split('[INST]')[0].strip()) > 1 else []
-                nl_ann_2.extend(term)
-            _, _, _, precision, recall, fscore = computeTermEvalMetrics(nl_ann_2, gold_list)
-
-            ##########################################
-            print("#"*50)
-            print("#3. Masking terms")
-            nl_ann_3 = []
-            for x in df[args.format]:
-                sent = str(x).split('Output: ')[1].split('[INST]')[0].strip() if len(str(x).split('Output: ')) > 1 else ""
-                nl_ann_3.extend(extract_between_markers(sent))
-
-            nl_ann_3_updated = []
-            for x in nl_ann_3:
-                nl_ann_3_updated.append(x.split('@@')[-1])
-            
-            _, _, _, precision, recall, fscore = computeTermEvalMetrics(nl_ann_3, gold_list)
-            
-
-        elif args.ver == 'nes':
-            print("Dutch NES evaluation")
-
-            #########################################
-            print("#"*50)
-            print("#1. Extracted IOB format")
-            precision, recall, fscore =  eval_template1(df, args.format, gold_list)
-
-            ##########################################
-            print("#"*50)
-            print("#2. Extracted candidate term list")
-            nl_nes_2 = []
-            for x in df[args.format]:
-                term = eval(str(x).split('Output: ')[1].split('[INST]')[0].strip()) if len(str(x).split('Output: ')) > 1 and len(str(x).split('Output: ')[1].split('[INST]')[0].strip()) > 1 else []
-                nl_nes_2.extend(term)
-                
-            _, _, _, precision, recall, fscore = computeTermEvalMetrics(nl_nes_2, gold_list)
-
-            ##########################################
-            print("#"*50)
-            print("#3. Masking terms")
-            nl_nes_3 = []
-            for x in df[args.format]:
-                sent = str(x).split('Output: ')[1].split('[INST]')[0].strip() if len(str(x).split('Output: ')) > 1 else ""
-                nl_nes_3.extend(extract_between_markers(sent))
-
-            _, _, _, precision, recall, fscore = computeTermEvalMetrics(nl_nes_3, gold_list)
-
-        else: 
-            raise Exception("Version not supported")
-        
     else:
-        raise Exception("Language not supported")
-
-    
+        raise Exception("Format not supported")
+                
     print("Precision: " + str(precision))
     print("Recall: " + str(recall))
     print("F-score: " + str(fscore))
