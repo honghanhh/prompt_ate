@@ -111,12 +111,12 @@ if __name__ == '__main__':
     print(args.lang)
     print(args.ver)
 
-    if args.format == 1:
+    if '1' in args.format:
         print("#"*50)
         print("#1. Extracted IOB format")
         precision, recall, fscore = eval_template1(df, args.format, gold_list)
 
-    elif args.format == 2:
+    elif '2' in args.format:
         print("#"*50)
         print("#2. Extracted candidate term list")
         candidate_terms = []
@@ -131,7 +131,7 @@ if __name__ == '__main__':
         else:
             raise Exception("Language not supported")
         _, _, _, precision, recall, fscore = computeTermEvalMetrics(candidate_terms, gold_list)
-    elif args.format == 3:
+    elif '3' in args.format:
         ### RAW
         candidate_terms = []
         for x in df[args.format]:
