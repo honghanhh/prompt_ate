@@ -97,9 +97,6 @@ if __name__ == '__main__':
                 en_ann_output1_processed.extend(terms)
 
             _, _, _, precision, recall, fscore = computeTermEvalMetrics(en_ann_output1_processed, gold_list)
-            print("Precision: " + str(precision))
-            print("Recall: " + str(recall))
-            print("F-score: " + str(fscore))
 
             ##########################################
             print("#"*50)
@@ -112,9 +109,6 @@ if __name__ == '__main__':
                     else:
                         en_ann_output2.extend(eval(x))
             _, _, _, precision, recall, fscore = computeTermEvalMetrics(en_ann_output2, gold_list)
-            print("Precision: " + str(precision))
-            print("Recall: " + str(recall))
-            print("F-score: " + str(fscore))
 
             ##########################################
             print("#"*50)
@@ -125,9 +119,6 @@ if __name__ == '__main__':
                 en_ann_output3_processed.extend(x)
             
             _, _, _, precision, recall, fscore = computeTermEvalMetrics(en_ann_output3_processed, gold_list)
-            print("Precision: " + str(precision))
-            print("Recall: " + str(recall))
-            print("F-score: " + str(fscore))
 
         elif args.ver == 'nes':
             print("English NES evaluation")
@@ -151,9 +142,6 @@ if __name__ == '__main__':
                 en_nes_output1_processed.extend(terms)
                 
             _, _, _, precision, recall, fscore = computeTermEvalMetrics(en_nes_output1_processed, gold_list)
-            print("Precision: " + str(precision))
-            print("Recall: " + str(recall))
-            print("F-score: " + str(fscore))
 
             ##########################################
             print("#"*50)
@@ -170,9 +158,6 @@ if __name__ == '__main__':
                         en_nes_output2.extend(eval(x))
         
             _, _, _, precision, recall, fscore = computeTermEvalMetrics(en_nes_output2, gold_list)
-            print("Precision: " + str(precision))
-            print("Recall: " + str(recall))
-            print("F-score: " + str(fscore))
 
             ##########################################
             print("#"*50)
@@ -183,9 +168,7 @@ if __name__ == '__main__':
                 en_nes_output3_processed.extend(x)
 
             _, _, _, precision, recall, fscore = computeTermEvalMetrics(en_nes_output3_processed, gold_list)
-            print("Precision: " + str(precision))
-            print("Recall: " + str(recall))
-            print("F-score: " + str(fscore))
+
         else: 
             raise Exception("Version not supported")
     elif args.lang == 'fr':
@@ -216,9 +199,6 @@ if __name__ == '__main__':
                 fr_ann_output1_processed.extend(terms)
 
             _, _, _, precision, recall, fscore = computeTermEvalMetrics(fr_ann_output1_processed, gold_list)
-            print("Precision: " + str(precision))
-            print("Recall: " + str(recall))
-            print("F-score: " + str(fscore))
 
             ##########################################
             print("#"*50)
@@ -232,9 +212,6 @@ if __name__ == '__main__':
             fr_ann_output2 = [x for x in fr_ann_output2 if len(x) != 0]
 
             _, _, _, precision, recall, fscore = computeTermEvalMetrics(fr_ann_output2, gold_list)
-            print("Precision: " + str(precision))
-            print("Recall: " + str(recall))
-            print("F-score: " + str(fscore))
 
             ##########################################
             print("#"*50)
@@ -245,16 +222,13 @@ if __name__ == '__main__':
                 fr_ann_output3_processed.extend(x)
             
             _, _, _, precision, recall, fscore = computeTermEvalMetrics(fr_ann_output3_processed, gold_list)
-            print("Precision: " + str(precision))
-            print("Recall: " + str(recall))
-            print("F-score: " + str(fscore))
 
         elif args.ver == 'nes':
             print("French NES evaluation")
 
             ##########################################
             print("#"*50)
-            print("#1. Extracted candidate term list")
+            print("#1. Extracted IOB format")
             fr_nes_output1 = []
             for x, y in list(zip(df.words, df.fr_nes_output1)):
                 if x == 'nan':
@@ -275,9 +249,6 @@ if __name__ == '__main__':
                 fr_nes_output1_processed.extend(terms)
         
             _, _, _, precision, recall, fscore = computeTermEvalMetrics(fr_nes_output1_processed, gold_list)
-            print("Precision: " + str(precision))
-            print("Recall: " + str(recall))
-            print("F-score: " + str(fscore))
 
             ##########################################
             print("#"*50)
@@ -290,9 +261,6 @@ if __name__ == '__main__':
                     fr_nes_output2.extend(temp)
                 
             _, _, _, precision, recall, fscore = computeTermEvalMetrics(fr_nes_output2, gold_list)
-            print("Precision: " + str(precision))
-            print("Recall: " + str(recall))
-            print("F-score: " + str(fscore))
 
             ##########################################
             print("#"*50)
@@ -303,9 +271,7 @@ if __name__ == '__main__':
                 fr_nes_output3_processed.extend(x)
 
             _, _, _, precision, recall, fscore = computeTermEvalMetrics(fr_nes_output3_processed, gold_list)
-            print("Precision: " + str(precision))
-            print("Recall: " + str(recall))
-            print("F-score: " + str(fscore))
+
         else: 
             raise Exception("Version not supported")
     elif args.lang == 'nl':
@@ -355,9 +321,6 @@ if __name__ == '__main__':
             nl_ann_output2 = [x for x in nl_ann_output2 if len(x) != 0]
 
             _, _, _, precision, recall, fscore = computeTermEvalMetrics(nl_ann_output2, gold_list)
-            print("Precision: " + str(precision))
-            print("Recall: " + str(recall))
-            print("F-score: " + str(fscore))
 
             ##########################################
             print("#"*50)
@@ -368,9 +331,6 @@ if __name__ == '__main__':
                 nl_ann_output3_processed.extend(x)
             
             _, _, _, precision, recall, fscore = computeTermEvalMetrics(nl_ann_output3_processed, gold_list)
-            print("Precision: " + str(precision))
-            print("Recall: " + str(recall))
-            print("F-score: " + str(fscore))
 
         elif args.ver == 'nes':
             print("Dutch NES evaluation")
@@ -404,9 +364,6 @@ if __name__ == '__main__':
                     nl_nes_output1_processed.extend(terms)
         
             _, _, _, precision, recall, fscore = computeTermEvalMetrics(nl_nes_output1_processed, gold_list)
-            print("Precision: " + str(precision))
-            print("Recall: " + str(recall))
-            print("F-score: " + str(fscore))
 
             ##########################################
             print("#"*50)
@@ -419,9 +376,6 @@ if __name__ == '__main__':
             nl_nes_output2 = [x for x in nl_nes_output2 if len(x) != 0]
                 
             _, _, _, precision, recall, fscore = computeTermEvalMetrics(nl_nes_output2, gold_list)
-            print("Precision: " + str(precision))
-            print("Recall: " + str(recall))
-            print("F-score: " + str(fscore))
 
             ##########################################
             print("#"*50)
@@ -432,13 +386,12 @@ if __name__ == '__main__':
                 nl_nes_output3_processed.extend(x)
 
             _, _, _, precision, recall, fscore = computeTermEvalMetrics(nl_nes_output3_processed, gold_list)
-            print("Precision: " + str(precision))
-            print("Recall: " + str(recall))
-            print("F-score: " + str(fscore))
         else: 
             raise Exception("Version not supported")
         
     else:
         raise Exception("Language not supported")
 
-    
+    print("Precision: " + str(precision))
+    print("Recall: " + str(recall))
+    print("F-score: " + str(fscore))
