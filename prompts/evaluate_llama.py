@@ -143,8 +143,8 @@ if __name__ == '__main__':
         for x in candidate_terms:
             candidate_terms_list.append(x.split('@@')[-1])
 
-        _, _, _, precision, recall, fscore = computeTermEvalMetrics(candidate_terms, gold_list)
-        _, _, _, precision1, recall1, fscore1 = computeTermEvalMetrics(candidate_terms_list, gold_list)
+        _, _, _, precision, recall, fscore = computeTermEvalMetrics(candidate_terms_list, gold_list)
+        _, _, _, precision1, recall1, fscore1 = computeTermEvalMetrics(candidate_terms, gold_list)
                 
         print("Precision: " + str(precision1))
         print("Recall: " + str(recall1))

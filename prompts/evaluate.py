@@ -306,9 +306,6 @@ if __name__ == '__main__':
                     nl_ann_output1_processed.extend(terms)
 
             _, _, _, precision, recall, fscore = computeTermEvalMetrics(nl_ann_output1_processed, gold_list)
-            print("Precision: " + str(precision))
-            print("Recall: " + str(recall))
-            print("F-score: " + str(fscore))
 
             ##########################################
             print("#"*50)
