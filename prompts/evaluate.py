@@ -153,8 +153,8 @@ if __name__ == '__main__':
         print("#"*50)
         print("#3. Masking terms")
         candidate_terms_processed = []
-        df[args.format] = [extract_between_markers(str(x)) for x in df[args.format]]
-        for x in df[args.format]:
+        df['en_ann_output3_processed'] = [extract_between_markers(x) for x in df['en_ann_output3']]
+        for x in df['en_ann_output3_processed']:
             candidate_terms_processed.extend(x)
 
     else:
