@@ -183,13 +183,12 @@ def evaluate_prompts(df, format, gold_list):
                         "physician",
                         "hospital characteristics",
                     ]
-                )
+                ) 
+            elif  'Effecten:' in str(x) and lang == 'nl':
+                candidate_terms.extend([])
             else:
-                term = (
-                    eval(str(x).split("Output: ")[1].split("[INST")[0].strip())
-                    if len(str(x).split("Output: ")) > 1
-                    and len(str(x).split("Output: ")[1].split("[INST")[0].strip()) > 1
-                    else []
+                term = eval(str(x).split('Output: ')[1].split('[INST')[0].split('Please')[0].split('Note')[0].strip()) if len(str(x).split('Output: ')) > 1 and len(str(x).split('Output: ')[1].split('[INST')[0].strip()) > 1 else []
+                candidate_terms.extend(term)
                 )
                 candidate_terms.extend(term)
         precision, recall, fscore = computeTermEvalMetrics(candidate_terms, gold_list)
