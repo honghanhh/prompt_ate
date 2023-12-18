@@ -15,7 +15,7 @@ import warnings
 warnings.filterwarnings("ignore")
 
 import os
-os.environ["CUDA_VISIBLE_DEVICES"]='1'
+os.environ["CUDA_VISIBLE_DEVICES"]='0'
 # os.environ["TOKENIZERS_PARALLELISM"] = "false"
 # os.environ["WANDB_DISABLED"] = "true"
 
@@ -773,7 +773,7 @@ if __name__ == '__main__':
         torch_dtype=torch.bfloat16,
         trust_remote_code=True,
         #device_map="auto",
-        device="cuda:1",
+        device="cuda:0",
         max_length=1000,
         do_sample=True,
         top_k=10,
