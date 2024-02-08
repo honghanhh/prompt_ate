@@ -96,7 +96,7 @@ def prompt_design(lang, ver, format):
                 <s>
                 [INST]
                 <<SYS>>
-                As an excellent automatic term extraction (ATE) system, extract the terms given the following text delimited by triple backquotes. Named entities are not considered as terms.
+                As an excellent automatic term extraction (ATE) system, extract the terms in the Heart Failure domain given the following text delimited by triple backquotes. Named entities are not considered as terms.
                 Output Format: [list of terms present]
                 If no terms are presented, keep it empty list: []
 
@@ -131,7 +131,7 @@ def prompt_design(lang, ver, format):
                 <s>
                 [INST]
                 <<SYS>>
-                As an excellent automatic term extraction (ATE) system, extract the terms given the following text delimited by triple backquotes. Named entities are not considered as terms.
+                As an excellent automatic term extraction (ATE) system, extract the terms in the Heart Failure domain given the following text delimited by triple backquotes. Named entities are not considered as terms.
                 Output Format: [list of terms present]
                 If no terms are presented, keep it empty list: []
 
@@ -254,7 +254,7 @@ def prompt_design(lang, ver, format):
                 <s>
                 [INST]
                 <<SYS>>
-                As an excellent automatic term extraction (ATE) system, extract the terms given the following text delimited by triple backquotes. Both terms and named entities are considered as terms.
+                As an excellent automatic term extraction (ATE) system, extract the terms in the Heart Failure domain given the following text delimited by triple backquotes. Both terms and named entities are considered as terms.
                 Output Format: [list of terms present]
                 If no terms are presented, keep it empty list: []
 
@@ -291,7 +291,7 @@ def prompt_design(lang, ver, format):
                 <s>
                 [INST]
                 <<SYS>>
-                As an excellent automatic term extraction (ATE) system, extract the terms given the following text delimited by triple backquotes. Named entities are not considered as terms.
+                As an excellent automatic term extraction (ATE) system, extract the terms in the Heart Failure domain given the following text delimited by triple backquotes. Named entities are not considered as terms.
                 Output Format: [list of terms present]
                 If no terms are presented, keep it empty list: []
 
