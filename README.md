@@ -2,7 +2,7 @@
 
 ## 1. Description
 
-In this repo, we implement our research on the applicability of large-scale language models (LLMs) on ATE tasks in three forms of prompting: (1) sequence-labeling response; (2) text-generative response; and (3) filling the gap of both types. We conduct experiments on ACTER corpora of three languages and four domains.
+In this repo, we implement our research on the applicability of large-scale language models (LLMs) on ATE tasks in three forms of prompting: (1) sequence-labeling response; (2) text-generative response; and (3) filling the gap of both types. We conduct experiments on ACTER corpora of three languages and four domains. Check out our paper at TSD Conference: [here](https://link.springer.com/chapter/10.1007/978-3-031-70563-2_2)
 
 ---
 
@@ -162,3 +162,16 @@ chmod +x run_llama.sh
 ## Contributors:
 
 - 🐮 [TRAN Thi Hong Hanh](https://github.com/honghanhh) 🐮
+
+## License
+- ___License___: Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) (https://creativecommons.org/licenses/by-nc-sa/4.0/)
+- ___Reference___: Please cite the following paper if you use this method for your research
+```
+@inproceedings{tran2024prompting,
+  title={Is Prompting What Term Extraction Needs?},
+  author={Tran, Hanh Thi Hong and González-Gallardo, Carlos-Emiliano and Delauney, Julien and Moreno, Jose and Doucet, Antoine and Pollak, Senja},
+  booktitle={27th International Conference on Text, Speech and Dialogue (TSD 2024)},
+  year={2024},
+  note={Accepted}
+}
+```
